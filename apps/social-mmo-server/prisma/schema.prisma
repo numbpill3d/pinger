@@ -1,0 +1,105 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Forum {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String?
+  description String?
+  threads     Thread[]
+  owner       String?
+}
+
+model Thread {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  content   String?
+  title     String?
+  forum     Forum?   @relation(fields: [forumId], references: [id])
+  forumId   String?
+  posts     Post[]
+  creator   String?
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  content   String?
+  thread    Thread?  @relation(fields: [threadId], references: [id])
+  threadId  String?
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?
+}
+
+model Event {
+  id          String    @id @default(cuid())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  title       String?
+  description String?
+  date        DateTime?
+}
+
+model Reward {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  description String?
+  value       Int?
+  quests      Quest[]
+}
+
+model Quest {
+  id                 String   @id @default(cuid())
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  title              String?
+  description        String?
+  reputationRequired Int?
+  reward             Reward?  @relation(fields: [rewardId], references: [id])
+  rewardId           String?
+}
+
+model Reputation {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  value     Int?
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?
+}
+
+model User {
+  id          String       @id @default(cuid())
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  firstName   String?
+  lastName    String?
+  username    String       @unique
+  email       String?      @unique
+  password    String
+  roles       Json
+  posts       Post[]
+  reputations Reputation[]
+}
+
+model ClothingItem {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Avatar {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
