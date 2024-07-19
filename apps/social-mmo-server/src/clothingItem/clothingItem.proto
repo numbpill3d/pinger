@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+                 package clothingItem;
+service ClothingItemService {
+ rpc createClothingItem (ClothingItemCreateInput) returns (ClothingItem) {}
+rpc clothingItems (findManyParams) returns (stream ClothingItem) {}
+rpc clothingItem (ClothingItemWhereUniqueInput) returns (ClothingItem) {}
+rpc updateClothingItem (ClothingItemUpdateInput) returns (ClothingItem) {}
+rpc deleteClothingItem (ClothingItemWhereUniqueInput) returns (ClothingItem) {} 
+ }
+message ClothingItemCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+};
+message ClothingItem {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+};
+message ClothingItemWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+};
+message ClothingItemUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+};
+message findManyParams {
+
+};

@@ -46,6 +46,9 @@ export class ClothingItemControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: ClothingItemCreateInput,
+  })
   async createClothingItem(
     @common.Body() data: ClothingItemCreateInput
   ): Promise<ClothingItem> {
@@ -125,6 +128,9 @@ export class ClothingItemControllerBase {
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
+  })
+  @swagger.ApiBody({
+    type: ClothingItemUpdateInput,
   })
   async updateClothingItem(
     @common.Param() params: ClothingItemWhereUniqueInput,

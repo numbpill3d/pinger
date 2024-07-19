@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+                 package post;
+service PostService {
+ rpc createPost (PostCreateInput) returns (Post) {}
+rpc posts (findManyParams) returns (stream Post) {}
+rpc post (PostWhereUniqueInput) returns (Post) {}
+rpc updatePost (PostUpdateInput) returns (Post) {}
+rpc deletePost (PostWhereUniqueInput) returns (Post) {} 
+ }
+message PostCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string content = 4;
+};
+message Post {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string content = 4;
+};
+message PostWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string content = 4;
+};
+message PostUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string content = 4;
+};
+message findManyParams {
+
+};

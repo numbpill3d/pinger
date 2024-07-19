@@ -49,6 +49,9 @@ export class RewardControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: RewardCreateInput,
+  })
   async createReward(@common.Body() data: RewardCreateInput): Promise<Reward> {
     return await this.service.createReward({
       data: data,
@@ -132,6 +135,9 @@ export class RewardControllerBase {
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
+  })
+  @swagger.ApiBody({
+    type: RewardUpdateInput,
   })
   async updateReward(
     @common.Param() params: RewardWhereUniqueInput,

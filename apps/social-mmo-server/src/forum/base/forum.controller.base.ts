@@ -49,6 +49,9 @@ export class ForumControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: ForumCreateInput,
+  })
   async createForum(@common.Body() data: ForumCreateInput): Promise<Forum> {
     return await this.service.createForum({
       data: data,
@@ -135,6 +138,9 @@ export class ForumControllerBase {
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
+  })
+  @swagger.ApiBody({
+    type: ForumUpdateInput,
   })
   async updateForum(
     @common.Param() params: ForumWhereUniqueInput,

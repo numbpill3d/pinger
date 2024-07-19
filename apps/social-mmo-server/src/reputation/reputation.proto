@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+                 package reputation;
+service ReputationService {
+ rpc createReputation (ReputationCreateInput) returns (Reputation) {}
+rpc reputations (findManyParams) returns (stream Reputation) {}
+rpc reputation (ReputationWhereUniqueInput) returns (Reputation) {}
+rpc updateReputation (ReputationUpdateInput) returns (Reputation) {}
+rpc deleteReputation (ReputationWhereUniqueInput) returns (Reputation) {} 
+ }
+message ReputationCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 value = 4;
+};
+message Reputation {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 value = 4;
+};
+message ReputationWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 value = 4;
+};
+message ReputationUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 value = 4;
+};
+message findManyParams {
+
+};

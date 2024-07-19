@@ -46,6 +46,9 @@ export class EventControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: EventCreateInput,
+  })
   async createEvent(@common.Body() data: EventCreateInput): Promise<Event> {
     return await this.service.createEvent({
       data: data,
@@ -132,6 +135,9 @@ export class EventControllerBase {
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
+  })
+  @swagger.ApiBody({
+    type: EventUpdateInput,
   })
   async updateEvent(
     @common.Param() params: EventWhereUniqueInput,

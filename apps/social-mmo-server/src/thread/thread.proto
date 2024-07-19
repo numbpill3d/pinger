@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+                 package thread;
+service ThreadService {
+ rpc createThread (ThreadCreateInput) returns (Thread) {}
+rpc threads (findManyParams) returns (stream Thread) {}
+rpc thread (ThreadWhereUniqueInput) returns (Thread) {}
+rpc updateThread (ThreadUpdateInput) returns (Thread) {}
+rpc deleteThread (ThreadWhereUniqueInput) returns (Thread) {}
+rpc findManyThread (ThreadWhereUniqueInput) returns (stream Post) {}
+rpc updateThread (PostParams) returns (stream Post) {}
+rpc connectThread (PostParams) returns (Post) {}
+rpc disconnectThread (PostParams) returns (Post) {} 
+ }
+message ThreadCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string content = 4;
+string title = 5;
+repeated Post posts = 6;
+string creator = 7;
+};
+message Thread {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string content = 4;
+string title = 5;
+repeated Post posts = 6;
+string creator = 7;
+};
+message ThreadWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string content = 4;
+string title = 5;
+repeated Post posts = 6;
+string creator = 7;
+};
+message ThreadUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string content = 4;
+string title = 5;
+repeated Post posts = 6;
+string creator = 7;
+};
+message findManyParams {
+
+};
+message Post {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string content = 4;
+};
+message PostWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string content = 4;
+};
+message PostParams {
+ThreadWhereUniqueInput threadWhereUniqueInput = 1;
+PostWhereUniqueInput postWhereUniqueInput = 2;
+};

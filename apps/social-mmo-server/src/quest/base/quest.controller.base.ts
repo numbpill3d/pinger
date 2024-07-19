@@ -46,6 +46,9 @@ export class QuestControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: QuestCreateInput,
+  })
   async createQuest(@common.Body() data: QuestCreateInput): Promise<Quest> {
     return await this.service.createQuest({
       data: {
@@ -158,6 +161,9 @@ export class QuestControllerBase {
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
+  })
+  @swagger.ApiBody({
+    type: QuestUpdateInput,
   })
   async updateQuest(
     @common.Param() params: QuestWhereUniqueInput,

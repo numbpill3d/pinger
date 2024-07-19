@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+                 package quest;
+service QuestService {
+ rpc createQuest (QuestCreateInput) returns (Quest) {}
+rpc quests (findManyParams) returns (stream Quest) {}
+rpc quest (QuestWhereUniqueInput) returns (Quest) {}
+rpc updateQuest (QuestUpdateInput) returns (Quest) {}
+rpc deleteQuest (QuestWhereUniqueInput) returns (Quest) {} 
+ }
+message QuestCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string title = 4;
+string description = 5;
+int32 reputationRequired = 6;
+};
+message Quest {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string title = 4;
+string description = 5;
+int32 reputationRequired = 6;
+};
+message QuestWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string title = 4;
+string description = 5;
+int32 reputationRequired = 6;
+};
+message QuestUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string title = 4;
+string description = 5;
+int32 reputationRequired = 6;
+};
+message findManyParams {
+
+};

@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+                 package avatar;
+service AvatarService {
+ rpc createAvatar (AvatarCreateInput) returns (Avatar) {}
+rpc avatars (findManyParams) returns (stream Avatar) {}
+rpc avatar (AvatarWhereUniqueInput) returns (Avatar) {}
+rpc updateAvatar (AvatarUpdateInput) returns (Avatar) {}
+rpc deleteAvatar (AvatarWhereUniqueInput) returns (Avatar) {} 
+ }
+message AvatarCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+};
+message Avatar {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+};
+message AvatarWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+};
+message AvatarUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+};
+message findManyParams {
+
+};

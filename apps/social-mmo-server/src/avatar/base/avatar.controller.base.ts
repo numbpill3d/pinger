@@ -46,6 +46,9 @@ export class AvatarControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: AvatarCreateInput,
+  })
   async createAvatar(@common.Body() data: AvatarCreateInput): Promise<Avatar> {
     return await this.service.createAvatar({
       data: data,
@@ -123,6 +126,9 @@ export class AvatarControllerBase {
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
+  })
+  @swagger.ApiBody({
+    type: AvatarUpdateInput,
   })
   async updateAvatar(
     @common.Param() params: AvatarWhereUniqueInput,

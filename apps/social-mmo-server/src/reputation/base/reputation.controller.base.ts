@@ -46,6 +46,9 @@ export class ReputationControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: ReputationCreateInput,
+  })
   async createReputation(
     @common.Body() data: ReputationCreateInput
   ): Promise<Reputation> {
@@ -154,6 +157,9 @@ export class ReputationControllerBase {
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
+  })
+  @swagger.ApiBody({
+    type: ReputationUpdateInput,
   })
   async updateReputation(
     @common.Param() params: ReputationWhereUniqueInput,

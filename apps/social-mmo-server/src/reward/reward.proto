@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+                 package reward;
+service RewardService {
+ rpc createReward (RewardCreateInput) returns (Reward) {}
+rpc rewards (findManyParams) returns (stream Reward) {}
+rpc reward (RewardWhereUniqueInput) returns (Reward) {}
+rpc updateReward (RewardUpdateInput) returns (Reward) {}
+rpc deleteReward (RewardWhereUniqueInput) returns (Reward) {}
+rpc findManyReward (RewardWhereUniqueInput) returns (stream Quest) {}
+rpc updateReward (QuestParams) returns (stream Quest) {}
+rpc connectReward (QuestParams) returns (Quest) {}
+rpc disconnectReward (QuestParams) returns (Quest) {} 
+ }
+message RewardCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string description = 4;
+int32 value = 5;
+repeated Quest quests = 6;
+};
+message Reward {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string description = 4;
+int32 value = 5;
+repeated Quest quests = 6;
+};
+message RewardWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string description = 4;
+int32 value = 5;
+repeated Quest quests = 6;
+};
+message RewardUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string description = 4;
+int32 value = 5;
+repeated Quest quests = 6;
+};
+message findManyParams {
+
+};
+message Quest {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string title = 4;
+string description = 5;
+int32 reputationRequired = 6;
+};
+message QuestWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string title = 4;
+string description = 5;
+int32 reputationRequired = 6;
+};
+message QuestParams {
+RewardWhereUniqueInput rewardWhereUniqueInput = 1;
+QuestWhereUniqueInput questWhereUniqueInput = 2;
+};

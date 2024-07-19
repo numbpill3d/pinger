@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+                 package user;
+service UserService {
+ rpc createUser (UserCreateInput) returns (User) {}
+rpc users (findManyParams) returns (stream User) {}
+rpc user (UserWhereUniqueInput) returns (User) {}
+rpc updateUser (UserUpdateInput) returns (User) {}
+rpc deleteUser (UserWhereUniqueInput) returns (User) {}
+rpc findManyUser (UserWhereUniqueInput) returns (stream Post) {}
+rpc updateUser (PostParams) returns (stream Post) {}
+rpc connectUser (PostParams) returns (Post) {}
+rpc disconnectUser (PostParams) returns (Post) {}
+rpc findManyUser (UserWhereUniqueInput) returns (stream Reputation) {}
+rpc updateUser (ReputationParams) returns (stream Reputation) {}
+rpc connectUser (ReputationParams) returns (Reputation) {}
+rpc disconnectUser (ReputationParams) returns (Reputation) {} 
+ }
+message UserCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string firstName = 4;
+string lastName = 5;
+string username = 6;
+string email = 7;
+string password = 8;
+repeated string roles = 9;
+repeated Post posts = 10;
+repeated Reputation reputations = 11;
+};
+message User {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string firstName = 4;
+string lastName = 5;
+string username = 6;
+string email = 7;
+string password = 8;
+repeated string roles = 9;
+repeated Post posts = 10;
+repeated Reputation reputations = 11;
+};
+message UserWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string firstName = 4;
+string lastName = 5;
+string username = 6;
+string email = 7;
+string password = 8;
+repeated string roles = 9;
+repeated Post posts = 10;
+repeated Reputation reputations = 11;
+};
+message UserUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string firstName = 4;
+string lastName = 5;
+string username = 6;
+string email = 7;
+string password = 8;
+repeated string roles = 9;
+repeated Post posts = 10;
+repeated Reputation reputations = 11;
+};
+message findManyParams {
+
+};
+message Post {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string content = 4;
+};
+message PostWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string content = 4;
+};
+message PostParams {
+UserWhereUniqueInput userWhereUniqueInput = 1;
+PostWhereUniqueInput postWhereUniqueInput = 2;
+};
+message Reputation {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 value = 4;
+};
+message ReputationWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 value = 4;
+};
+message ReputationParams {
+UserWhereUniqueInput userWhereUniqueInput = 1;
+ReputationWhereUniqueInput reputationWhereUniqueInput = 2;
+};
