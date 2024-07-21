@@ -49,6 +49,9 @@ export class RewardControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: RewardCreateInput,
+  })
   async createReward(@common.Body() data: RewardCreateInput): Promise<Reward> {
     return await this.service.createReward({
       data: data,
@@ -58,6 +61,8 @@ export class RewardControllerBase {
         updatedAt: true,
         description: true,
         value: true,
+        name: true,
+        typeField: true,
       },
     });
   }
@@ -84,6 +89,8 @@ export class RewardControllerBase {
         updatedAt: true,
         description: true,
         value: true,
+        name: true,
+        typeField: true,
       },
     });
   }
@@ -111,6 +118,8 @@ export class RewardControllerBase {
         updatedAt: true,
         description: true,
         value: true,
+        name: true,
+        typeField: true,
       },
     });
     if (result === null) {
@@ -133,6 +142,9 @@ export class RewardControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: RewardUpdateInput,
+  })
   async updateReward(
     @common.Param() params: RewardWhereUniqueInput,
     @common.Body() data: RewardUpdateInput
@@ -147,6 +159,8 @@ export class RewardControllerBase {
           updatedAt: true,
           description: true,
           value: true,
+          name: true,
+          typeField: true,
         },
       });
     } catch (error) {
@@ -182,6 +196,8 @@ export class RewardControllerBase {
           updatedAt: true,
           description: true,
           value: true,
+          name: true,
+          typeField: true,
         },
       });
     } catch (error) {
@@ -222,6 +238,10 @@ export class RewardControllerBase {
             id: true,
           },
         },
+
+        name: true,
+        questName: true,
+        questDescription: true,
       },
     });
     if (results === null) {

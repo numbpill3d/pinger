@@ -7,4 +7,7 @@ export type EventWhereInput = {
   title?: StringNullableFilter;
   description?: StringNullableFilter;
   date?: DateTimeNullableFilter;
+  eventTitle?: StringNullableFilter;
+  eventDescription?: StringNullableFilter;
+  eventDate?: DateTimeNullableFilter;
 };

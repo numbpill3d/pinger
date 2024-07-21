@@ -8,4 +8,6 @@ export type RewardWhereInput = {
   description?: StringNullableFilter;
   value?: IntNullableFilter;
   quests?: QuestListRelationFilter;
+  name?: StringNullableFilter;
+  typeField?: "Option1";
 };

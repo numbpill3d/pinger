@@ -27,6 +27,9 @@ export const ReputationList = (props: ListProps): React.ReactElement => {
         <ReferenceField label="User" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="points" source="points" />
+        <TextField label="reputationPoints" source="reputationPoints" />
+        <TextField label="reputationUser" source="reputationUser" />
       </Datagrid>
     </List>
   );

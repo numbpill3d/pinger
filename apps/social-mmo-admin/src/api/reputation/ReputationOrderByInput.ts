@@ -6,4 +6,7 @@ export type ReputationOrderByInput = {
   updatedAt?: SortOrder;
   value?: SortOrder;
   userId?: SortOrder;
+  points?: SortOrder;
+  reputationPoints?: SortOrder;
+  reputationUser?: SortOrder;
 };

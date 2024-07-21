@@ -24,6 +24,7 @@ import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
 import { Post } from "../../post/base/Post";
 import { Reputation } from "../../reputation/base/Reputation";
+import { Avatar } from "../../avatar/base/Avatar";
 
 @ObjectType()
 class User {
@@ -118,6 +119,15 @@ class User {
   @Type(() => Reputation)
   @IsOptional()
   reputations?: Array<Reputation>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Avatar],
+  })
+  @ValidateNested()
+  @Type(() => Avatar)
+  @IsOptional()
+  avatars?: Array<Avatar>;
 }
 
 export { User as User };

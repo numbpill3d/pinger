@@ -8,4 +8,8 @@ export type PostWhereInput = {
   content?: StringNullableFilter;
   thread?: ThreadWhereUniqueInput;
   user?: UserWhereUniqueInput;
+  author?: StringNullableFilter;
+  postContent?: StringNullableFilter;
+  postAuthor?: StringNullableFilter;
+  postThread?: StringNullableFilter;
 };

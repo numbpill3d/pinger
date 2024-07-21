@@ -9,4 +9,7 @@ export type QuestWhereInput = {
   description?: StringNullableFilter;
   reputationRequired?: IntNullableFilter;
   reward?: RewardWhereUniqueInput;
+  name?: StringNullableFilter;
+  questName?: StringNullableFilter;
+  questDescription?: StringNullableFilter;
 };

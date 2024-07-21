@@ -13,7 +13,11 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
-import { IsOptional } from "class-validator";
+import { IsOptional, IsEnum, ValidateNested } from "class-validator";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { EnumClothingItemTypeField } from "./EnumClothingItemTypeField";
+import { EnumClothingItemRarity } from "./EnumClothingItemRarity";
+import { AvatarWhereUniqueInput } from "../../avatar/base/AvatarWhereUniqueInput";
 
 @InputType()
 class ClothingItemWhereInput {
@@ -27,6 +31,51 @@ class ClothingItemWhereInput {
     nullable: true,
   })
   id?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  name?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumClothingItemTypeField,
+  })
+  @IsEnum(EnumClothingItemTypeField)
+  @IsOptional()
+  @Field(() => EnumClothingItemTypeField, {
+    nullable: true,
+  })
+  typeField?: "Option1";
+
+  @ApiProperty({
+    required: false,
+    enum: EnumClothingItemRarity,
+  })
+  @IsEnum(EnumClothingItemRarity)
+  @IsOptional()
+  @Field(() => EnumClothingItemRarity, {
+    nullable: true,
+  })
+  rarity?: "Option1";
+
+  @ApiProperty({
+    required: false,
+    type: () => AvatarWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => AvatarWhereUniqueInput)
+  @IsOptional()
+  @Field(() => AvatarWhereUniqueInput, {
+    nullable: true,
+  })
+  avatar?: AvatarWhereUniqueInput;
 }
 
 export { ClothingItemWhereInput as ClothingItemWhereInput };

@@ -19,9 +19,11 @@ import {
   Min,
   Max,
   ValidateNested,
+  IsEnum,
 } from "class-validator";
 import { QuestUpdateManyWithoutRewardsInput } from "./QuestUpdateManyWithoutRewardsInput";
 import { Type } from "class-transformer";
+import { EnumRewardTypeField } from "./EnumRewardTypeField";
 
 @InputType()
 class RewardUpdateInput {
@@ -61,6 +63,29 @@ class RewardUpdateInput {
     nullable: true,
   })
   quests?: QuestUpdateManyWithoutRewardsInput;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @MaxLength(1000)
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  name?: string | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumRewardTypeField,
+  })
+  @IsEnum(EnumRewardTypeField)
+  @IsOptional()
+  @Field(() => EnumRewardTypeField, {
+    nullable: true,
+  })
+  typeField?: "Option1" | null;
 }
 
 export { RewardUpdateInput as RewardUpdateInput };

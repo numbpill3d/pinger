@@ -8,13 +8,16 @@ generator client {
 }
 
 model Forum {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  name        String?
-  description String?
-  threads     Thread[]
-  owner       String?
+  id               String   @id @default(cuid())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  name             String?
+  description      String?
+  threads          Thread[]
+  owner            String?
+  title            String?
+  forumTitle       String?
+  forumDescription String?
 }
 
 model Thread {
@@ -30,32 +33,53 @@ model Thread {
 }
 
 model Post {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  content   String?
-  thread    Thread?  @relation(fields: [threadId], references: [id])
-  threadId  String?
-  user      User?    @relation(fields: [userId], references: [id])
-  userId    String?
-}
-
-model Event {
-  id          String    @id @default(cuid())
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  title       String?
-  description String?
-  date        DateTime?
-}
-
-model Reward {
   id          String   @id @default(cuid())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  content     String?
+  thread      Thread?  @relation(fields: [threadId], references: [id])
+  threadId    String?
+  user        User?    @relation(fields: [userId], references: [id])
+  userId      String?
+  author      String?
+  postContent String?
+  postAuthor  String?
+  postThread  String?
+}
+
+model Event {
+  id               String    @id @default(cuid())
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  title            String?
+  description      String?
+  date             DateTime?
+  eventTitle       String?
+  eventDescription String?
+  eventDate        DateTime?
+}
+
+model Reward {
+  id          String               @id @default(cuid())
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
   description String?
   value       Int?
   quests      Quest[]
+  name        String?
+  typeField   EnumRewardTypeField?
+}
+
+model Reputation {
+  id               String   @id @default(cuid())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  value            Int?
+  user             User?    @relation(fields: [userId], references: [id])
+  userId           String?
+  points           Int?
+  reputationPoints Int?
+  reputationUser   String?
 }
 
 model Quest {
@@ -67,15 +91,9 @@ model Quest {
   reputationRequired Int?
   reward             Reward?  @relation(fields: [rewardId], references: [id])
   rewardId           String?
-}
-
-model Reputation {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  value     Int?
-  user      User?    @relation(fields: [userId], references: [id])
-  userId    String?
+  name               String?
+  questName          String?
+  questDescription   String?
 }
 
 model User {
@@ -90,16 +108,39 @@ model User {
   roles       Json
   posts       Post[]
   reputations Reputation[]
+  avatars     Avatar[]
 }
 
 model ClothingItem {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String                     @id @default(cuid())
+  createdAt DateTime                   @default(now())
+  updatedAt DateTime                   @updatedAt
+  name      String?
+  typeField EnumClothingItemTypeField?
+  rarity    EnumClothingItemRarity?
+  avatar    Avatar?                    @relation(fields: [avatarId], references: [id])
+  avatarId  String?
 }
 
 model Avatar {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            String         @id @default(cuid())
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  name          String?
+  avatarUrl     String?
+  clothingItems ClothingItem[]
+  user          User?          @relation(fields: [userId], references: [id])
+  userId        String?
+}
+
+enum EnumRewardTypeField {
+  Option1
+}
+
+enum EnumClothingItemTypeField {
+  Option1
+}
+
+enum EnumClothingItemRarity {
+  Option1
 }

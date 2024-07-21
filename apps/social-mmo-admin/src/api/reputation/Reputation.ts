@@ -6,4 +6,7 @@ export type Reputation = {
   updatedAt: Date;
   value: number | null;
   user?: User | null;
+  points: number | null;
+  reputationPoints: number | null;
+  reputationUser: string | null;
 };

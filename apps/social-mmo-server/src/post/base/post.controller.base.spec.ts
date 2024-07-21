@@ -22,12 +22,20 @@ const CREATE_INPUT = {
   createdAt: new Date(),
   updatedAt: new Date(),
   content: "exampleContent",
+  author: "exampleAuthor",
+  postContent: "examplePostContent",
+  postAuthor: "examplePostAuthor",
+  postThread: "examplePostThread",
 };
 const CREATE_RESULT = {
   id: "exampleId",
   createdAt: new Date(),
   updatedAt: new Date(),
   content: "exampleContent",
+  author: "exampleAuthor",
+  postContent: "examplePostContent",
+  postAuthor: "examplePostAuthor",
+  postThread: "examplePostThread",
 };
 const FIND_MANY_RESULT = [
   {
@@ -35,6 +43,10 @@ const FIND_MANY_RESULT = [
     createdAt: new Date(),
     updatedAt: new Date(),
     content: "exampleContent",
+    author: "exampleAuthor",
+    postContent: "examplePostContent",
+    postAuthor: "examplePostAuthor",
+    postThread: "examplePostThread",
   },
 ];
 const FIND_ONE_RESULT = {
@@ -42,6 +54,10 @@ const FIND_ONE_RESULT = {
   createdAt: new Date(),
   updatedAt: new Date(),
   content: "exampleContent",
+  author: "exampleAuthor",
+  postContent: "examplePostContent",
+  postAuthor: "examplePostAuthor",
+  postThread: "examplePostThread",
 };
 
 const service = {

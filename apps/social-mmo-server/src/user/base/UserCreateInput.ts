@@ -23,6 +23,7 @@ import { InputJsonValue } from "../../types";
 import { PostCreateNestedManyWithoutUsersInput } from "./PostCreateNestedManyWithoutUsersInput";
 import { Type } from "class-transformer";
 import { ReputationCreateNestedManyWithoutUsersInput } from "./ReputationCreateNestedManyWithoutUsersInput";
+import { AvatarCreateNestedManyWithoutUsersInput } from "./AvatarCreateNestedManyWithoutUsersInput";
 
 @InputType()
 class UserCreateInput {
@@ -107,6 +108,18 @@ class UserCreateInput {
     nullable: true,
   })
   reputations?: ReputationCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => AvatarCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => AvatarCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => AvatarCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  avatars?: AvatarCreateNestedManyWithoutUsersInput;
 }
 
 export { UserCreateInput as UserCreateInput };

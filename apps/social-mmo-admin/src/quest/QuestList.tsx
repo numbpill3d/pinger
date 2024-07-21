@@ -29,6 +29,9 @@ export const QuestList = (props: ListProps): React.ReactElement => {
         <ReferenceField label="reward" source="reward.id" reference="Reward">
           <TextField source={REWARD_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="name" source="name" />
+        <TextField label="questName" source="questName" />
+        <TextField label="questDescription" source="questDescription" />
       </Datagrid>
     </List>
   );

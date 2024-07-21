@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+                 package forum;
+service ForumService {
+ rpc createForum (ForumCreateInput) returns (Forum) {}
+rpc forums (findManyParams) returns (stream Forum) {}
+rpc forum (ForumWhereUniqueInput) returns (Forum) {}
+rpc updateForum (ForumUpdateInput) returns (Forum) {}
+rpc deleteForum (ForumWhereUniqueInput) returns (Forum) {}
+rpc findManyForum (ForumWhereUniqueInput) returns (stream Thread) {}
+rpc updateForum (ThreadParams) returns (stream Thread) {}
+rpc connectForum (ThreadParams) returns (Thread) {}
+rpc disconnectForum (ThreadParams) returns (Thread) {} 
+ }
+message ForumCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+string description = 5;
+repeated Thread threads = 6;
+string owner = 7;
+string title = 8;
+string forumTitle = 9;
+string forumDescription = 10;
+};
+message Forum {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+string description = 5;
+repeated Thread threads = 6;
+string owner = 7;
+string title = 8;
+string forumTitle = 9;
+string forumDescription = 10;
+};
+message ForumWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+string description = 5;
+repeated Thread threads = 6;
+string owner = 7;
+string title = 8;
+string forumTitle = 9;
+string forumDescription = 10;
+};
+message ForumUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+string description = 5;
+repeated Thread threads = 6;
+string owner = 7;
+string title = 8;
+string forumTitle = 9;
+string forumDescription = 10;
+};
+message findManyParams {
+
+};
+message Thread {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string content = 4;
+string title = 5;
+string creator = 6;
+};
+message ThreadWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string content = 4;
+string title = 5;
+string creator = 6;
+};
+message ThreadParams {
+ForumWhereUniqueInput forumWhereUniqueInput = 1;
+ThreadWhereUniqueInput threadWhereUniqueInput = 2;
+};

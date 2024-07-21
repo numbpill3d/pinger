@@ -5,4 +5,7 @@ export type QuestUpdateInput = {
   description?: string | null;
   reputationRequired?: number | null;
   reward?: RewardWhereUniqueInput | null;
+  name?: string | null;
+  questName?: string | null;
+  questDescription?: string | null;
 };

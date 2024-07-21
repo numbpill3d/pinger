@@ -8,6 +8,7 @@ import {
   NumberInput,
   ReferenceArrayInput,
   SelectArrayInput,
+  SelectInput,
 } from "react-admin";
 
 import { QuestTitle } from "../quest/QuestTitle";
@@ -26,6 +27,15 @@ export const RewardCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={QuestTitle} />
         </ReferenceArrayInput>
+        <TextInput label="name" source="name" />
+        <SelectInput
+          source="typeField"
+          label="type"
+          choices={[{ label: "Option 1", value: "Option1" }]}
+          optionText="label"
+          allowEmpty
+          optionValue="value"
+        />
       </SimpleForm>
     </Create>
   );

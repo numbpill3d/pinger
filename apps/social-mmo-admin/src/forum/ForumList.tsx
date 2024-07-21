@@ -18,6 +18,9 @@ export const ForumList = (props: ListProps): React.ReactElement => {
         <TextField label="name" source="name" />
         <TextField label="description" source="description" />
         <TextField label="Owner" source="owner" />
+        <TextField label="title" source="title" />
+        <TextField label="forumTitle" source="forumTitle" />
+        <TextField label="forumDescription" source="forumDescription" />
       </Datagrid>
     </List>
   );

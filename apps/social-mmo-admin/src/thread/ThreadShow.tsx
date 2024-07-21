@@ -44,6 +44,10 @@ export const ThreadShow = (props: ShowProps): React.ReactElement => {
             <ReferenceField label="User" source="user.id" reference="User">
               <TextField source={USER_TITLE_FIELD} />
             </ReferenceField>
+            <TextField label="author" source="author" />
+            <TextField label="postContent" source="postContent" />
+            <TextField label="postAuthor" source="postAuthor" />
+            <TextField label="postThread" source="postThread" />
           </Datagrid>
         </ReferenceManyField>
       </SimpleShowLayout>

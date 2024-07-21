@@ -49,6 +49,9 @@ export class ForumControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: ForumCreateInput,
+  })
   async createForum(@common.Body() data: ForumCreateInput): Promise<Forum> {
     return await this.service.createForum({
       data: data,
@@ -59,6 +62,9 @@ export class ForumControllerBase {
         name: true,
         description: true,
         owner: true,
+        title: true,
+        forumTitle: true,
+        forumDescription: true,
       },
     });
   }
@@ -86,6 +92,9 @@ export class ForumControllerBase {
         name: true,
         description: true,
         owner: true,
+        title: true,
+        forumTitle: true,
+        forumDescription: true,
       },
     });
   }
@@ -114,6 +123,9 @@ export class ForumControllerBase {
         name: true,
         description: true,
         owner: true,
+        title: true,
+        forumTitle: true,
+        forumDescription: true,
       },
     });
     if (result === null) {
@@ -136,6 +148,9 @@ export class ForumControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: ForumUpdateInput,
+  })
   async updateForum(
     @common.Param() params: ForumWhereUniqueInput,
     @common.Body() data: ForumUpdateInput
@@ -151,6 +166,9 @@ export class ForumControllerBase {
           name: true,
           description: true,
           owner: true,
+          title: true,
+          forumTitle: true,
+          forumDescription: true,
         },
       });
     } catch (error) {
@@ -187,6 +205,9 @@ export class ForumControllerBase {
           name: true,
           description: true,
           owner: true,
+          title: true,
+          forumTitle: true,
+          forumDescription: true,
         },
       });
     } catch (error) {

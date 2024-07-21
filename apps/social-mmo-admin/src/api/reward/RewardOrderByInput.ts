@@ -6,4 +6,6 @@ export type RewardOrderByInput = {
   updatedAt?: SortOrder;
   description?: SortOrder;
   value?: SortOrder;
+  name?: SortOrder;
+  typeField?: SortOrder;
 };

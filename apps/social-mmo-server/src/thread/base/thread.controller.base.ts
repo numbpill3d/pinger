@@ -48,6 +48,9 @@ export class ThreadControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: ThreadCreateInput,
+  })
   async createThread(@common.Body() data: ThreadCreateInput): Promise<Thread> {
     return await this.service.createThread({
       data: {
@@ -163,6 +166,9 @@ export class ThreadControllerBase {
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
+  })
+  @swagger.ApiBody({
+    type: ThreadUpdateInput,
   })
   async updateThread(
     @common.Param() params: ThreadWhereUniqueInput,
@@ -281,6 +287,11 @@ export class ThreadControllerBase {
             id: true,
           },
         },
+
+        author: true,
+        postContent: true,
+        postAuthor: true,
+        postThread: true,
       },
     });
     if (results === null) {

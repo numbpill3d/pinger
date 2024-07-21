@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+                 package avatar;
+service AvatarService {
+ rpc createAvatar (AvatarCreateInput) returns (Avatar) {}
+rpc avatars (findManyParams) returns (stream Avatar) {}
+rpc avatar (AvatarWhereUniqueInput) returns (Avatar) {}
+rpc updateAvatar (AvatarUpdateInput) returns (Avatar) {}
+rpc deleteAvatar (AvatarWhereUniqueInput) returns (Avatar) {}
+rpc findManyAvatar (AvatarWhereUniqueInput) returns (stream ClothingItem) {}
+rpc updateAvatar (ClothingItemParams) returns (stream ClothingItem) {}
+rpc connectAvatar (ClothingItemParams) returns (ClothingItem) {}
+rpc disconnectAvatar (ClothingItemParams) returns (ClothingItem) {} 
+ }
+message AvatarCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+string avatarUrl = 5;
+repeated ClothingItem clothingItems = 6;
+};
+message Avatar {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+string avatarUrl = 5;
+repeated ClothingItem clothingItems = 6;
+};
+message AvatarWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+string avatarUrl = 5;
+repeated ClothingItem clothingItems = 6;
+};
+message AvatarUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+string avatarUrl = 5;
+repeated ClothingItem clothingItems = 6;
+};
+message findManyParams {
+
+};
+message ClothingItem {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+repeated string typeField = 5;
+repeated string rarity = 6;
+};
+message ClothingItemWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+repeated string typeField = 5;
+repeated string rarity = 6;
+};
+message ClothingItemParams {
+AvatarWhereUniqueInput avatarWhereUniqueInput = 1;
+ClothingItemWhereUniqueInput clothingitemWhereUniqueInput = 2;
+};

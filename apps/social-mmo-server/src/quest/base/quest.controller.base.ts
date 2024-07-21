@@ -46,6 +46,9 @@ export class QuestControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: QuestCreateInput,
+  })
   async createQuest(@common.Body() data: QuestCreateInput): Promise<Quest> {
     return await this.service.createQuest({
       data: {
@@ -70,6 +73,10 @@ export class QuestControllerBase {
             id: true,
           },
         },
+
+        name: true,
+        questName: true,
+        questDescription: true,
       },
     });
   }
@@ -103,6 +110,10 @@ export class QuestControllerBase {
             id: true,
           },
         },
+
+        name: true,
+        questName: true,
+        questDescription: true,
       },
     });
   }
@@ -137,6 +148,10 @@ export class QuestControllerBase {
             id: true,
           },
         },
+
+        name: true,
+        questName: true,
+        questDescription: true,
       },
     });
     if (result === null) {
@@ -158,6 +173,9 @@ export class QuestControllerBase {
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
+  })
+  @swagger.ApiBody({
+    type: QuestUpdateInput,
   })
   async updateQuest(
     @common.Param() params: QuestWhereUniqueInput,
@@ -188,6 +206,10 @@ export class QuestControllerBase {
               id: true,
             },
           },
+
+          name: true,
+          questName: true,
+          questDescription: true,
         },
       });
     } catch (error) {
@@ -230,6 +252,10 @@ export class QuestControllerBase {
               id: true,
             },
           },
+
+          name: true,
+          questName: true,
+          questDescription: true,
         },
       });
     } catch (error) {

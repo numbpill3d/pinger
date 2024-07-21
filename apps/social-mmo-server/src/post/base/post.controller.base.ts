@@ -45,6 +45,9 @@ export class PostControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: PostCreateInput,
+  })
   async createPost(@common.Body() data: PostCreateInput): Promise<Post> {
     return await this.service.createPost({
       data: {
@@ -79,6 +82,11 @@ export class PostControllerBase {
             id: true,
           },
         },
+
+        author: true,
+        postContent: true,
+        postAuthor: true,
+        postThread: true,
       },
     });
   }
@@ -116,6 +124,11 @@ export class PostControllerBase {
             id: true,
           },
         },
+
+        author: true,
+        postContent: true,
+        postAuthor: true,
+        postThread: true,
       },
     });
   }
@@ -154,6 +167,11 @@ export class PostControllerBase {
             id: true,
           },
         },
+
+        author: true,
+        postContent: true,
+        postAuthor: true,
+        postThread: true,
       },
     });
     if (result === null) {
@@ -175,6 +193,9 @@ export class PostControllerBase {
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
+  })
+  @swagger.ApiBody({
+    type: PostUpdateInput,
   })
   async updatePost(
     @common.Param() params: PostWhereUniqueInput,
@@ -215,6 +236,11 @@ export class PostControllerBase {
               id: true,
             },
           },
+
+          author: true,
+          postContent: true,
+          postAuthor: true,
+          postThread: true,
         },
       });
     } catch (error) {
@@ -261,6 +287,11 @@ export class PostControllerBase {
               id: true,
             },
           },
+
+          author: true,
+          postContent: true,
+          postAuthor: true,
+          postThread: true,
         },
       });
     } catch (error) {

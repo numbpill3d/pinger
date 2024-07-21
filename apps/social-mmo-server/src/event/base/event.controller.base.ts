@@ -46,6 +46,9 @@ export class EventControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: EventCreateInput,
+  })
   async createEvent(@common.Body() data: EventCreateInput): Promise<Event> {
     return await this.service.createEvent({
       data: data,
@@ -56,6 +59,9 @@ export class EventControllerBase {
         title: true,
         description: true,
         date: true,
+        eventTitle: true,
+        eventDescription: true,
+        eventDate: true,
       },
     });
   }
@@ -83,6 +89,9 @@ export class EventControllerBase {
         title: true,
         description: true,
         date: true,
+        eventTitle: true,
+        eventDescription: true,
+        eventDate: true,
       },
     });
   }
@@ -111,6 +120,9 @@ export class EventControllerBase {
         title: true,
         description: true,
         date: true,
+        eventTitle: true,
+        eventDescription: true,
+        eventDate: true,
       },
     });
     if (result === null) {
@@ -133,6 +145,9 @@ export class EventControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: EventUpdateInput,
+  })
   async updateEvent(
     @common.Param() params: EventWhereUniqueInput,
     @common.Body() data: EventUpdateInput
@@ -148,6 +163,9 @@ export class EventControllerBase {
           title: true,
           description: true,
           date: true,
+          eventTitle: true,
+          eventDescription: true,
+          eventDate: true,
         },
       });
     } catch (error) {
@@ -184,6 +202,9 @@ export class EventControllerBase {
           title: true,
           description: true,
           date: true,
+          eventTitle: true,
+          eventDescription: true,
+          eventDate: true,
         },
       });
     } catch (error) {

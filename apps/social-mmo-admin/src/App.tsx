@@ -25,14 +25,14 @@ import { RewardList } from "./reward/RewardList";
 import { RewardCreate } from "./reward/RewardCreate";
 import { RewardEdit } from "./reward/RewardEdit";
 import { RewardShow } from "./reward/RewardShow";
-import { QuestList } from "./quest/QuestList";
-import { QuestCreate } from "./quest/QuestCreate";
-import { QuestEdit } from "./quest/QuestEdit";
-import { QuestShow } from "./quest/QuestShow";
 import { ReputationList } from "./reputation/ReputationList";
 import { ReputationCreate } from "./reputation/ReputationCreate";
 import { ReputationEdit } from "./reputation/ReputationEdit";
 import { ReputationShow } from "./reputation/ReputationShow";
+import { QuestList } from "./quest/QuestList";
+import { QuestCreate } from "./quest/QuestCreate";
+import { QuestEdit } from "./quest/QuestEdit";
+import { QuestShow } from "./quest/QuestShow";
 import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
@@ -107,18 +107,18 @@ const App = (): React.ReactElement => {
           show={RewardShow}
         />
         <Resource
-          name="Quest"
-          list={QuestList}
-          edit={QuestEdit}
-          create={QuestCreate}
-          show={QuestShow}
-        />
-        <Resource
           name="Reputation"
           list={ReputationList}
           edit={ReputationEdit}
           create={ReputationCreate}
           show={ReputationShow}
+        />
+        <Resource
+          name="Quest"
+          list={QuestList}
+          edit={QuestEdit}
+          create={QuestCreate}
+          show={QuestShow}
         />
         <Resource
           name="User"

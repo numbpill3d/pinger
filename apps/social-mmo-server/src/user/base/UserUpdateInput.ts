@@ -23,6 +23,7 @@ import { InputJsonValue } from "../../types";
 import { PostUpdateManyWithoutUsersInput } from "./PostUpdateManyWithoutUsersInput";
 import { Type } from "class-transformer";
 import { ReputationUpdateManyWithoutUsersInput } from "./ReputationUpdateManyWithoutUsersInput";
+import { AvatarUpdateManyWithoutUsersInput } from "./AvatarUpdateManyWithoutUsersInput";
 
 @InputType()
 class UserUpdateInput {
@@ -116,6 +117,18 @@ class UserUpdateInput {
     nullable: true,
   })
   reputations?: ReputationUpdateManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => AvatarUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => AvatarUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => AvatarUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  avatars?: AvatarUpdateManyWithoutUsersInput;
 }
 
 export { UserUpdateInput as UserUpdateInput };

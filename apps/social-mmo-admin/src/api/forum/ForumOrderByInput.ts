@@ -7,4 +7,7 @@ export type ForumOrderByInput = {
   name?: SortOrder;
   description?: SortOrder;
   owner?: SortOrder;
+  title?: SortOrder;
+  forumTitle?: SortOrder;
+  forumDescription?: SortOrder;
 };

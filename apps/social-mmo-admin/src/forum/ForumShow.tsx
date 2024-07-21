@@ -23,6 +23,9 @@ export const ForumShow = (props: ShowProps): React.ReactElement => {
         <TextField label="name" source="name" />
         <TextField label="description" source="description" />
         <TextField label="Owner" source="owner" />
+        <TextField label="title" source="title" />
+        <TextField label="forumTitle" source="forumTitle" />
+        <TextField label="forumDescription" source="forumDescription" />
         <ReferenceManyField reference="Thread" target="forumId" label="Threads">
           <Datagrid rowClick="show">
             <TextField label="ID" source="id" />

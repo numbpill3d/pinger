@@ -46,6 +46,9 @@ export class ReputationControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
+  @swagger.ApiBody({
+    type: ReputationCreateInput,
+  })
   async createReputation(
     @common.Body() data: ReputationCreateInput
   ): Promise<Reputation> {
@@ -70,6 +73,10 @@ export class ReputationControllerBase {
             id: true,
           },
         },
+
+        points: true,
+        reputationPoints: true,
+        reputationUser: true,
       },
     });
   }
@@ -101,6 +108,10 @@ export class ReputationControllerBase {
             id: true,
           },
         },
+
+        points: true,
+        reputationPoints: true,
+        reputationUser: true,
       },
     });
   }
@@ -133,6 +144,10 @@ export class ReputationControllerBase {
             id: true,
           },
         },
+
+        points: true,
+        reputationPoints: true,
+        reputationUser: true,
       },
     });
     if (result === null) {
@@ -154,6 +169,9 @@ export class ReputationControllerBase {
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
+  })
+  @swagger.ApiBody({
+    type: ReputationUpdateInput,
   })
   async updateReputation(
     @common.Param() params: ReputationWhereUniqueInput,
@@ -182,6 +200,10 @@ export class ReputationControllerBase {
               id: true,
             },
           },
+
+          points: true,
+          reputationPoints: true,
+          reputationUser: true,
         },
       });
     } catch (error) {
@@ -222,6 +244,10 @@ export class ReputationControllerBase {
               id: true,
             },
           },
+
+          points: true,
+          reputationPoints: true,
+          reputationUser: true,
         },
       });
     } catch (error) {

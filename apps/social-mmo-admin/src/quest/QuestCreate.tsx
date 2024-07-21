@@ -26,6 +26,13 @@ export const QuestCreate = (props: CreateProps): React.ReactElement => {
         <ReferenceInput source="reward.id" reference="Reward" label="reward">
           <SelectInput optionText={RewardTitle} />
         </ReferenceInput>
+        <TextInput label="name" source="name" />
+        <TextInput label="questName" source="questName" />
+        <TextInput
+          label="questDescription"
+          multiline
+          source="questDescription"
+        />
       </SimpleForm>
     </Create>
   );
