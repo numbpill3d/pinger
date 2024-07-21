@@ -26,6 +26,13 @@ export const ForumEdit = (props: EditProps): React.ReactElement => {
           <SelectArrayInput optionText={ThreadTitle} />
         </ReferenceArrayInput>
         <TextInput label="Owner" source="owner" />
+        <TextInput label="title" source="title" />
+        <TextInput label="forumTitle" source="forumTitle" />
+        <TextInput
+          label="forumDescription"
+          multiline
+          source="forumDescription"
+        />
       </SimpleForm>
     </Edit>
   );

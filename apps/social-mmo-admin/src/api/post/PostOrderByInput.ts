@@ -7,4 +7,8 @@ export type PostOrderByInput = {
   content?: SortOrder;
   threadId?: SortOrder;
   userId?: SortOrder;
+  author?: SortOrder;
+  postContent?: SortOrder;
+  postAuthor?: SortOrder;
+  postThread?: SortOrder;
 };

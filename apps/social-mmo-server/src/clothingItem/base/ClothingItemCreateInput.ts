@@ -9,5 +9,67 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-class ClothingItemCreateInput {}
+import { InputType, Field } from "@nestjs/graphql";
+import { ApiProperty } from "@nestjs/swagger";
+import {
+  IsString,
+  MaxLength,
+  IsOptional,
+  IsEnum,
+  ValidateNested,
+} from "class-validator";
+import { EnumClothingItemTypeField } from "./EnumClothingItemTypeField";
+import { EnumClothingItemRarity } from "./EnumClothingItemRarity";
+import { AvatarWhereUniqueInput } from "../../avatar/base/AvatarWhereUniqueInput";
+import { Type } from "class-transformer";
+
+@InputType()
+class ClothingItemCreateInput {
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @MaxLength(1000)
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  name?: string | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumClothingItemTypeField,
+  })
+  @IsEnum(EnumClothingItemTypeField)
+  @IsOptional()
+  @Field(() => EnumClothingItemTypeField, {
+    nullable: true,
+  })
+  typeField?: "Option1" | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumClothingItemRarity,
+  })
+  @IsEnum(EnumClothingItemRarity)
+  @IsOptional()
+  @Field(() => EnumClothingItemRarity, {
+    nullable: true,
+  })
+  rarity?: "Option1" | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => AvatarWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => AvatarWhereUniqueInput)
+  @IsOptional()
+  @Field(() => AvatarWhereUniqueInput, {
+    nullable: true,
+  })
+  avatar?: AvatarWhereUniqueInput | null;
+}
+
 export { ClothingItemCreateInput as ClothingItemCreateInput };

@@ -12,21 +12,33 @@ message ClothingItemCreateInput {
 string id = 1;
 string createdAt = 2;
 string updatedAt = 3;
+string name = 4;
+repeated string typeField = 5;
+repeated string rarity = 6;
 };
 message ClothingItem {
 string id = 1;
 string createdAt = 2;
 string updatedAt = 3;
+string name = 4;
+repeated string typeField = 5;
+repeated string rarity = 6;
 };
 message ClothingItemWhereUniqueInput {
 string id = 1;
 string createdAt = 2;
 string updatedAt = 3;
+string name = 4;
+repeated string typeField = 5;
+repeated string rarity = 6;
 };
 message ClothingItemUpdateInput {
 string id = 1;
 string createdAt = 2;
 string updatedAt = 3;
+string name = 4;
+repeated string typeField = 5;
+repeated string rarity = 6;
 };
 message findManyParams {
 

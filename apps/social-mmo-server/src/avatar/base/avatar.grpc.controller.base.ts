@@ -25,6 +25,9 @@ import { AvatarFindManyArgs } from "./AvatarFindManyArgs";
 import { AvatarUpdateInput } from "./AvatarUpdateInput";
 import { Avatar } from "./Avatar";
 import { Post } from "../../post/base/Post";
+import { ClothingItemFindManyArgs } from "../../clothingItem/base/ClothingItemFindManyArgs";
+import { ClothingItem } from "../../clothingItem/base/ClothingItem";
+import { ClothingItemWhereUniqueInput } from "../../clothingItem/base/ClothingItemWhereUniqueInput";
 
 export class AvatarGrpcControllerBase {
   constructor(protected readonly service: AvatarService) {}
@@ -33,11 +36,27 @@ export class AvatarGrpcControllerBase {
   @GrpcMethod("AvatarService", "createAvatar")
   async createAvatar(@common.Body() data: AvatarCreateInput): Promise<Avatar> {
     return await this.service.createAvatar({
-      data: data,
+      data: {
+        ...data,
+
+        user: data.user
+          ? {
+              connect: data.user,
+            }
+          : undefined,
+      },
       select: {
         id: true,
         createdAt: true,
         updatedAt: true,
+        name: true,
+        avatarUrl: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   }
@@ -54,6 +73,14 @@ export class AvatarGrpcControllerBase {
         id: true,
         createdAt: true,
         updatedAt: true,
+        name: true,
+        avatarUrl: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   }
@@ -71,6 +98,14 @@ export class AvatarGrpcControllerBase {
         id: true,
         createdAt: true,
         updatedAt: true,
+        name: true,
+        avatarUrl: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
     if (result === null) {
@@ -92,11 +127,27 @@ export class AvatarGrpcControllerBase {
     try {
       return await this.service.updateAvatar({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          user: data.user
+            ? {
+                connect: data.user,
+              }
+            : undefined,
+        },
         select: {
           id: true,
           createdAt: true,
           updatedAt: true,
+          name: true,
+          avatarUrl: true,
+
+          user: {
+            select: {
+              id: true,
+            },
+          },
         },
       });
     } catch (error) {
@@ -123,6 +174,14 @@ export class AvatarGrpcControllerBase {
           id: true,
           createdAt: true,
           updatedAt: true,
+          name: true,
+          avatarUrl: true,
+
+          user: {
+            select: {
+              id: true,
+            },
+          },
         },
       });
     } catch (error) {
@@ -133,5 +192,92 @@ export class AvatarGrpcControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.Get("/:id/clothingItems")
+  @ApiNestedQuery(ClothingItemFindManyArgs)
+  @GrpcMethod("AvatarService", "findManyClothingItems")
+  async findManyClothingItems(
+    @common.Req() request: Request,
+    @common.Param() params: AvatarWhereUniqueInput
+  ): Promise<ClothingItem[]> {
+    const query = plainToClass(ClothingItemFindManyArgs, request.query);
+    const results = await this.service.findClothingItems(params.id, {
+      ...query,
+      select: {
+        id: true,
+        createdAt: true,
+        updatedAt: true,
+        name: true,
+        typeField: true,
+        rarity: true,
+
+        avatar: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/clothingItems")
+  @GrpcMethod("AvatarService", "connectClothingItems")
+  async connectClothingItems(
+    @common.Param() params: AvatarWhereUniqueInput,
+    @common.Body() body: ClothingItemWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      clothingItems: {
+        connect: body,
+      },
+    };
+    await this.service.updateAvatar({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/clothingItems")
+  @GrpcMethod("AvatarService", "updateClothingItems")
+  async updateClothingItems(
+    @common.Param() params: AvatarWhereUniqueInput,
+    @common.Body() body: ClothingItemWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      clothingItems: {
+        set: body,
+      },
+    };
+    await this.service.updateAvatar({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/clothingItems")
+  @GrpcMethod("AvatarService", "disconnectClothingItems")
+  async disconnectClothingItems(
+    @common.Param() params: AvatarWhereUniqueInput,
+    @common.Body() body: ClothingItemWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      clothingItems: {
+        disconnect: body,
+      },
+    };
+    await this.service.updateAvatar({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 }

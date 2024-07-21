@@ -5,4 +5,7 @@ export type ForumUpdateInput = {
   description?: string | null;
   threads?: ThreadUpdateManyWithoutForumsInput;
   owner?: string | null;
+  title?: string | null;
+  forumTitle?: string | null;
+  forumDescription?: string | null;
 };

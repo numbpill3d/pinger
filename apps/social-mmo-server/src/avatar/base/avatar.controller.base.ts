@@ -27,6 +27,9 @@ import { Post } from "../../post/base/Post";
 import { AvatarFindManyArgs } from "./AvatarFindManyArgs";
 import { AvatarWhereUniqueInput } from "./AvatarWhereUniqueInput";
 import { AvatarUpdateInput } from "./AvatarUpdateInput";
+import { ClothingItemFindManyArgs } from "../../clothingItem/base/ClothingItemFindManyArgs";
+import { ClothingItem } from "../../clothingItem/base/ClothingItem";
+import { ClothingItemWhereUniqueInput } from "../../clothingItem/base/ClothingItemWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -51,11 +54,27 @@ export class AvatarControllerBase {
   })
   async createAvatar(@common.Body() data: AvatarCreateInput): Promise<Avatar> {
     return await this.service.createAvatar({
-      data: data,
+      data: {
+        ...data,
+
+        user: data.user
+          ? {
+              connect: data.user,
+            }
+          : undefined,
+      },
       select: {
         id: true,
         createdAt: true,
         updatedAt: true,
+        name: true,
+        avatarUrl: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   }
@@ -80,6 +99,14 @@ export class AvatarControllerBase {
         id: true,
         createdAt: true,
         updatedAt: true,
+        name: true,
+        avatarUrl: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   }
@@ -105,6 +132,14 @@ export class AvatarControllerBase {
         id: true,
         createdAt: true,
         updatedAt: true,
+        name: true,
+        avatarUrl: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
     if (result === null) {
@@ -137,11 +172,27 @@ export class AvatarControllerBase {
     try {
       return await this.service.updateAvatar({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          user: data.user
+            ? {
+                connect: data.user,
+              }
+            : undefined,
+        },
         select: {
           id: true,
           createdAt: true,
           updatedAt: true,
+          name: true,
+          avatarUrl: true,
+
+          user: {
+            select: {
+              id: true,
+            },
+          },
         },
       });
     } catch (error) {
@@ -175,6 +226,14 @@ export class AvatarControllerBase {
           id: true,
           createdAt: true,
           updatedAt: true,
+          name: true,
+          avatarUrl: true,
+
+          user: {
+            select: {
+              id: true,
+            },
+          },
         },
       });
     } catch (error) {
@@ -185,5 +244,109 @@ export class AvatarControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/clothingItems")
+  @ApiNestedQuery(ClothingItemFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "ClothingItem",
+    action: "read",
+    possession: "any",
+  })
+  async findClothingItems(
+    @common.Req() request: Request,
+    @common.Param() params: AvatarWhereUniqueInput
+  ): Promise<ClothingItem[]> {
+    const query = plainToClass(ClothingItemFindManyArgs, request.query);
+    const results = await this.service.findClothingItems(params.id, {
+      ...query,
+      select: {
+        id: true,
+        createdAt: true,
+        updatedAt: true,
+        name: true,
+        typeField: true,
+        rarity: true,
+
+        avatar: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/clothingItems")
+  @nestAccessControl.UseRoles({
+    resource: "Avatar",
+    action: "update",
+    possession: "any",
+  })
+  async connectClothingItems(
+    @common.Param() params: AvatarWhereUniqueInput,
+    @common.Body() body: ClothingItemWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      clothingItems: {
+        connect: body,
+      },
+    };
+    await this.service.updateAvatar({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/clothingItems")
+  @nestAccessControl.UseRoles({
+    resource: "Avatar",
+    action: "update",
+    possession: "any",
+  })
+  async updateClothingItems(
+    @common.Param() params: AvatarWhereUniqueInput,
+    @common.Body() body: ClothingItemWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      clothingItems: {
+        set: body,
+      },
+    };
+    await this.service.updateAvatar({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/clothingItems")
+  @nestAccessControl.UseRoles({
+    resource: "Avatar",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectClothingItems(
+    @common.Param() params: AvatarWhereUniqueInput,
+    @common.Body() body: ClothingItemWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      clothingItems: {
+        disconnect: body,
+      },
+    };
+    await this.service.updateAvatar({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 }

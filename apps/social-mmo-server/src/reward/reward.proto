@@ -19,6 +19,8 @@ string updatedAt = 3;
 string description = 4;
 int32 value = 5;
 repeated Quest quests = 6;
+string name = 7;
+repeated string typeField = 8;
 };
 message Reward {
 string id = 1;
@@ -27,6 +29,8 @@ string updatedAt = 3;
 string description = 4;
 int32 value = 5;
 repeated Quest quests = 6;
+string name = 7;
+repeated string typeField = 8;
 };
 message RewardWhereUniqueInput {
 string id = 1;
@@ -35,6 +39,8 @@ string updatedAt = 3;
 string description = 4;
 int32 value = 5;
 repeated Quest quests = 6;
+string name = 7;
+repeated string typeField = 8;
 };
 message RewardUpdateInput {
 string id = 1;
@@ -43,6 +49,8 @@ string updatedAt = 3;
 string description = 4;
 int32 value = 5;
 repeated Quest quests = 6;
+string name = 7;
+repeated string typeField = 8;
 };
 message findManyParams {
 
@@ -54,6 +62,9 @@ string updatedAt = 3;
 string title = 4;
 string description = 5;
 int32 reputationRequired = 6;
+string name = 7;
+string questName = 8;
+string questDescription = 9;
 };
 message QuestWhereUniqueInput {
 string id = 1;
@@ -62,6 +73,9 @@ string updatedAt = 3;
 string title = 4;
 string description = 5;
 int32 reputationRequired = 6;
+string name = 7;
+string questName = 8;
+string questDescription = 9;
 };
 message QuestParams {
 RewardWhereUniqueInput rewardWhereUniqueInput = 1;

@@ -10,7 +10,13 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Avatar as PrismaAvatar } from "@prisma/client";
+
+import {
+  Prisma,
+  Avatar as PrismaAvatar,
+  ClothingItem as PrismaClothingItem,
+  User as PrismaUser,
+} from "@prisma/client";
 
 export class AvatarServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -35,5 +41,24 @@ export class AvatarServiceBase {
   }
   async deleteAvatar(args: Prisma.AvatarDeleteArgs): Promise<PrismaAvatar> {
     return this.prisma.avatar.delete(args);
+  }
+
+  async findClothingItems(
+    parentId: string,
+    args: Prisma.ClothingItemFindManyArgs
+  ): Promise<PrismaClothingItem[]> {
+    return this.prisma.avatar
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .clothingItems(args);
+  }
+
+  async getUser(parentId: string): Promise<PrismaUser | null> {
+    return this.prisma.avatar
+      .findUnique({
+        where: { id: parentId },
+      })
+      .user();
   }
 }

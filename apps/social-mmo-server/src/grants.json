@@ -151,61 +151,61 @@
   },
   {
     "role": "user",
-    "resource": "Quest",
+    "resource": "Reputation",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Quest",
+    "resource": "Reputation",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Quest",
+    "resource": "Reputation",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Quest",
+    "resource": "Reputation",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Quest",
+    "resource": "Reputation",
     "action": "read:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Reputation",
+    "resource": "Quest",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Reputation",
+    "resource": "Quest",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Reputation",
+    "resource": "Quest",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Reputation",
+    "resource": "Quest",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Reputation",
+    "resource": "Quest",
     "action": "read:any",
     "attributes": "*"
   },

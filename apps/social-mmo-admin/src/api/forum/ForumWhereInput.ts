@@ -8,4 +8,7 @@ export type ForumWhereInput = {
   description?: StringNullableFilter;
   threads?: ThreadListRelationFilter;
   owner?: StringNullableFilter;
+  title?: StringNullableFilter;
+  forumTitle?: StringNullableFilter;
+  forumDescription?: StringNullableFilter;
 };

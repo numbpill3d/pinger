@@ -32,6 +32,9 @@ import { PostWhereUniqueInput } from "../../post/base/PostWhereUniqueInput";
 import { ReputationFindManyArgs } from "../../reputation/base/ReputationFindManyArgs";
 import { Reputation } from "../../reputation/base/Reputation";
 import { ReputationWhereUniqueInput } from "../../reputation/base/ReputationWhereUniqueInput";
+import { AvatarFindManyArgs } from "../../avatar/base/AvatarFindManyArgs";
+import { Avatar } from "../../avatar/base/Avatar";
+import { AvatarWhereUniqueInput } from "../../avatar/base/AvatarWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -249,6 +252,11 @@ export class UserControllerBase {
             id: true,
           },
         },
+
+        author: true,
+        postContent: true,
+        postAuthor: true,
+        postThread: true,
       },
     });
     if (results === null) {
@@ -351,6 +359,10 @@ export class UserControllerBase {
             id: true,
           },
         },
+
+        points: true,
+        reputationPoints: true,
+        reputationUser: true,
       },
     });
     if (results === null) {
@@ -417,6 +429,109 @@ export class UserControllerBase {
   ): Promise<void> {
     const data = {
       reputations: {
+        disconnect: body,
+      },
+    };
+    await this.service.updateUser({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/avatars")
+  @ApiNestedQuery(AvatarFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "Avatar",
+    action: "read",
+    possession: "any",
+  })
+  async findAvatars(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<Avatar[]> {
+    const query = plainToClass(AvatarFindManyArgs, request.query);
+    const results = await this.service.findAvatars(params.id, {
+      ...query,
+      select: {
+        id: true,
+        createdAt: true,
+        updatedAt: true,
+        name: true,
+        avatarUrl: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/avatars")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async connectAvatars(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: AvatarWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      avatars: {
+        connect: body,
+      },
+    };
+    await this.service.updateUser({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/avatars")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async updateAvatars(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: AvatarWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      avatars: {
+        set: body,
+      },
+    };
+    await this.service.updateUser({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/avatars")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectAvatars(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: AvatarWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      avatars: {
         disconnect: body,
       },
     };

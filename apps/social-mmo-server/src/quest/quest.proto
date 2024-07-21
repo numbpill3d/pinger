@@ -15,6 +15,9 @@ string updatedAt = 3;
 string title = 4;
 string description = 5;
 int32 reputationRequired = 6;
+string name = 7;
+string questName = 8;
+string questDescription = 9;
 };
 message Quest {
 string id = 1;
@@ -23,6 +26,9 @@ string updatedAt = 3;
 string title = 4;
 string description = 5;
 int32 reputationRequired = 6;
+string name = 7;
+string questName = 8;
+string questDescription = 9;
 };
 message QuestWhereUniqueInput {
 string id = 1;
@@ -31,6 +37,9 @@ string updatedAt = 3;
 string title = 4;
 string description = 5;
 int32 reputationRequired = 6;
+string name = 7;
+string questName = 8;
+string questDescription = 9;
 };
 message QuestUpdateInput {
 string id = 1;
@@ -39,6 +48,9 @@ string updatedAt = 3;
 string title = 4;
 string description = 5;
 int32 reputationRequired = 6;
+string name = 7;
+string questName = 8;
+string questDescription = 9;
 };
 message findManyParams {
 

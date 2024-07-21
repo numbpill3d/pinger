@@ -20,6 +20,9 @@ export const ReputationShow = (props: ShowProps): React.ReactElement => {
         <ReferenceField label="User" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="points" source="points" />
+        <TextField label="reputationPoints" source="reputationPoints" />
+        <TextField label="reputationUser" source="reputationUser" />
       </SimpleShowLayout>
     </Show>
   );

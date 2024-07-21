@@ -15,6 +15,9 @@ string updatedAt = 3;
 string title = 4;
 string description = 5;
 string date = 6;
+string eventTitle = 7;
+string eventDescription = 8;
+string eventDate = 9;
 };
 message Event {
 string id = 1;
@@ -23,6 +26,9 @@ string updatedAt = 3;
 string title = 4;
 string description = 5;
 string date = 6;
+string eventTitle = 7;
+string eventDescription = 8;
+string eventDate = 9;
 };
 message EventWhereUniqueInput {
 string id = 1;
@@ -31,6 +37,9 @@ string updatedAt = 3;
 string title = 4;
 string description = 5;
 string date = 6;
+string eventTitle = 7;
+string eventDescription = 8;
+string eventDate = 9;
 };
 message EventUpdateInput {
 string id = 1;
@@ -39,6 +48,9 @@ string updatedAt = 3;
 string title = 4;
 string description = 5;
 string date = 6;
+string eventTitle = 7;
+string eventDescription = 8;
+string eventDate = 9;
 };
 message findManyParams {
 

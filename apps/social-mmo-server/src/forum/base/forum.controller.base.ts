@@ -62,6 +62,9 @@ export class ForumControllerBase {
         name: true,
         description: true,
         owner: true,
+        title: true,
+        forumTitle: true,
+        forumDescription: true,
       },
     });
   }
@@ -89,6 +92,9 @@ export class ForumControllerBase {
         name: true,
         description: true,
         owner: true,
+        title: true,
+        forumTitle: true,
+        forumDescription: true,
       },
     });
   }
@@ -117,6 +123,9 @@ export class ForumControllerBase {
         name: true,
         description: true,
         owner: true,
+        title: true,
+        forumTitle: true,
+        forumDescription: true,
       },
     });
     if (result === null) {
@@ -157,6 +166,9 @@ export class ForumControllerBase {
           name: true,
           description: true,
           owner: true,
+          title: true,
+          forumTitle: true,
+          forumDescription: true,
         },
       });
     } catch (error) {
@@ -193,6 +205,9 @@ export class ForumControllerBase {
           name: true,
           description: true,
           owner: true,
+          title: true,
+          forumTitle: true,
+          forumDescription: true,
         },
       });
     } catch (error) {

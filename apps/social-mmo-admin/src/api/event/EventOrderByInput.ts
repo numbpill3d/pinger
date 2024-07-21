@@ -7,4 +7,7 @@ export type EventOrderByInput = {
   title?: SortOrder;
   description?: SortOrder;
   date?: SortOrder;
+  eventTitle?: SortOrder;
+  eventDescription?: SortOrder;
+  eventDate?: SortOrder;
 };

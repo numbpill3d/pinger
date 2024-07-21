@@ -18,11 +18,15 @@ import * as gqlACGuard from "../../auth/gqlAC.guard";
 import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
 import * as common from "@nestjs/common";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
+import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { ClothingItem } from "./ClothingItem";
 import { ClothingItemCountArgs } from "./ClothingItemCountArgs";
 import { ClothingItemFindManyArgs } from "./ClothingItemFindManyArgs";
 import { ClothingItemFindUniqueArgs } from "./ClothingItemFindUniqueArgs";
+import { CreateClothingItemArgs } from "./CreateClothingItemArgs";
+import { UpdateClothingItemArgs } from "./UpdateClothingItemArgs";
 import { DeleteClothingItemArgs } from "./DeleteClothingItemArgs";
+import { Avatar } from "../../avatar/base/Avatar";
 import { ClothingItemService } from "../clothingItem.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => ClothingItem)
@@ -77,6 +81,63 @@ export class ClothingItemResolverBase {
     return result;
   }
 
+  @common.UseInterceptors(AclValidateRequestInterceptor)
+  @graphql.Mutation(() => ClothingItem)
+  @nestAccessControl.UseRoles({
+    resource: "ClothingItem",
+    action: "create",
+    possession: "any",
+  })
+  async createClothingItem(
+    @graphql.Args() args: CreateClothingItemArgs
+  ): Promise<ClothingItem> {
+    return await this.service.createClothingItem({
+      ...args,
+      data: {
+        ...args.data,
+
+        avatar: args.data.avatar
+          ? {
+              connect: args.data.avatar,
+            }
+          : undefined,
+      },
+    });
+  }
+
+  @common.UseInterceptors(AclValidateRequestInterceptor)
+  @graphql.Mutation(() => ClothingItem)
+  @nestAccessControl.UseRoles({
+    resource: "ClothingItem",
+    action: "update",
+    possession: "any",
+  })
+  async updateClothingItem(
+    @graphql.Args() args: UpdateClothingItemArgs
+  ): Promise<ClothingItem | null> {
+    try {
+      return await this.service.updateClothingItem({
+        ...args,
+        data: {
+          ...args.data,
+
+          avatar: args.data.avatar
+            ? {
+                connect: args.data.avatar,
+              }
+            : undefined,
+        },
+      });
+    } catch (error) {
+      if (isRecordNotFoundError(error)) {
+        throw new GraphQLError(
+          `No resource was found for ${JSON.stringify(args.where)}`
+        );
+      }
+      throw error;
+    }
+  }
+
   @graphql.Mutation(() => ClothingItem)
   @nestAccessControl.UseRoles({
     resource: "ClothingItem",
@@ -96,5 +157,26 @@ export class ClothingItemResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Avatar, {
+    nullable: true,
+    name: "avatar",
+  })
+  @nestAccessControl.UseRoles({
+    resource: "Avatar",
+    action: "read",
+    possession: "any",
+  })
+  async getAvatar(
+    @graphql.Parent() parent: ClothingItem
+  ): Promise<Avatar | null> {
+    const result = await this.service.getAvatar(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 }

@@ -30,6 +30,8 @@ import { PostFindManyArgs } from "../../post/base/PostFindManyArgs";
 import { Post } from "../../post/base/Post";
 import { ReputationFindManyArgs } from "../../reputation/base/ReputationFindManyArgs";
 import { Reputation } from "../../reputation/base/Reputation";
+import { AvatarFindManyArgs } from "../../avatar/base/AvatarFindManyArgs";
+import { Avatar } from "../../avatar/base/Avatar";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => User)
@@ -168,6 +170,26 @@ export class UserResolverBase {
     @graphql.Args() args: ReputationFindManyArgs
   ): Promise<Reputation[]> {
     const results = await this.service.findReputations(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [Avatar], { name: "avatars" })
+  @nestAccessControl.UseRoles({
+    resource: "Avatar",
+    action: "read",
+    possession: "any",
+  })
+  async findAvatars(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: AvatarFindManyArgs
+  ): Promise<Avatar[]> {
+    const results = await this.service.findAvatars(parent.id, args);
 
     if (!results) {
       return [];

@@ -19,6 +19,7 @@ import {
   Max,
   IsOptional,
   ValidateNested,
+  MaxLength,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { User } from "../../user/base/User";
@@ -70,6 +71,44 @@ class Reputation {
   @Type(() => User)
   @IsOptional()
   user?: User | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @Min(-999999999)
+  @Max(999999999)
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  points!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @Min(-999999999)
+  @Max(999999999)
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  reputationPoints!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @MaxLength(1000)
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  reputationUser!: string | null;
 }
 
 export { Reputation as Reputation };

@@ -230,6 +230,11 @@ export class ThreadGrpcControllerBase {
             id: true,
           },
         },
+
+        author: true,
+        postContent: true,
+        postAuthor: true,
+        postThread: true,
       },
     });
     if (results === null) {

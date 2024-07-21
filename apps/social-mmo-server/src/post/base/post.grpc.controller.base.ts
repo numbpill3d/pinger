@@ -64,6 +64,11 @@ export class PostGrpcControllerBase {
             id: true,
           },
         },
+
+        author: true,
+        postContent: true,
+        postAuthor: true,
+        postThread: true,
       },
     });
   }
@@ -93,6 +98,11 @@ export class PostGrpcControllerBase {
             id: true,
           },
         },
+
+        author: true,
+        postContent: true,
+        postAuthor: true,
+        postThread: true,
       },
     });
   }
@@ -123,6 +133,11 @@ export class PostGrpcControllerBase {
             id: true,
           },
         },
+
+        author: true,
+        postContent: true,
+        postAuthor: true,
+        postThread: true,
       },
     });
     if (result === null) {
@@ -176,6 +191,11 @@ export class PostGrpcControllerBase {
               id: true,
             },
           },
+
+          author: true,
+          postContent: true,
+          postAuthor: true,
+          postThread: true,
         },
       });
     } catch (error) {
@@ -215,6 +235,11 @@ export class PostGrpcControllerBase {
               id: true,
             },
           },
+
+          author: true,
+          postContent: true,
+          postAuthor: true,
+          postThread: true,
         },
       });
     } catch (error) {

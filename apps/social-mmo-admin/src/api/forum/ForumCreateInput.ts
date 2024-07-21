@@ -5,4 +5,7 @@ export type ForumCreateInput = {
   description?: string | null;
   threads?: ThreadCreateNestedManyWithoutForumsInput;
   owner?: string | null;
+  title?: string | null;
+  forumTitle?: string | null;
+  forumDescription?: string | null;
 };

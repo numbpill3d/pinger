@@ -8,4 +8,7 @@ export type Quest = {
   description: string | null;
   reputationRequired: number | null;
   reward?: Reward | null;
+  name: string | null;
+  questName: string | null;
+  questDescription: string | null;
 };

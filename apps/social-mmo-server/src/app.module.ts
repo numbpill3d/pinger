@@ -19,8 +19,8 @@ import { ThreadModule } from "./thread/thread.module";
 import { PostModule } from "./post/post.module";
 import { EventModule } from "./event/event.module";
 import { RewardModule } from "./reward/reward.module";
-import { QuestModule } from "./quest/quest.module";
 import { ReputationModule } from "./reputation/reputation.module";
+import { QuestModule } from "./quest/quest.module";
 import { UserModule } from "./user/user.module";
 import { ClothingItemModule } from "./clothingItem/clothingItem.module";
 import { AvatarModule } from "./avatar/avatar.module";
@@ -50,8 +50,8 @@ import { AuthModule } from "./auth/auth.module";
     PostModule,
     EventModule,
     RewardModule,
-    QuestModule,
     ReputationModule,
+    QuestModule,
     UserModule,
     ClothingItemModule,
     AvatarModule,

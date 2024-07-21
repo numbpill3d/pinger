@@ -73,6 +73,10 @@ export class QuestControllerBase {
             id: true,
           },
         },
+
+        name: true,
+        questName: true,
+        questDescription: true,
       },
     });
   }
@@ -106,6 +110,10 @@ export class QuestControllerBase {
             id: true,
           },
         },
+
+        name: true,
+        questName: true,
+        questDescription: true,
       },
     });
   }
@@ -140,6 +148,10 @@ export class QuestControllerBase {
             id: true,
           },
         },
+
+        name: true,
+        questName: true,
+        questDescription: true,
       },
     });
     if (result === null) {
@@ -194,6 +206,10 @@ export class QuestControllerBase {
               id: true,
             },
           },
+
+          name: true,
+          questName: true,
+          questDescription: true,
         },
       });
     } catch (error) {
@@ -236,6 +252,10 @@ export class QuestControllerBase {
               id: true,
             },
           },
+
+          name: true,
+          questName: true,
+          questDescription: true,
         },
       });
     } catch (error) {

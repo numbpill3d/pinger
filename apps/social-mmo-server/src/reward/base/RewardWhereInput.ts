@@ -13,10 +13,11 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
-import { IsOptional, ValidateNested } from "class-validator";
+import { IsOptional, ValidateNested, IsEnum } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { QuestListRelationFilter } from "../../quest/base/QuestListRelationFilter";
+import { EnumRewardTypeField } from "./EnumRewardTypeField";
 
 @InputType()
 class RewardWhereInput {
@@ -64,6 +65,28 @@ class RewardWhereInput {
     nullable: true,
   })
   quests?: QuestListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  name?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumRewardTypeField,
+  })
+  @IsEnum(EnumRewardTypeField)
+  @IsOptional()
+  @Field(() => EnumRewardTypeField, {
+    nullable: true,
+  })
+  typeField?: "Option1";
 }
 
 export { RewardWhereInput as RewardWhereInput };

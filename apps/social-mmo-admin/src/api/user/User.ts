@@ -1,6 +1,7 @@
 import { JsonValue } from "type-fest";
 import { Post } from "../post/Post";
 import { Reputation } from "../reputation/Reputation";
+import { Avatar } from "../avatar/Avatar";
 
 export type User = {
   id: string;
@@ -13,4 +14,5 @@ export type User = {
   roles: JsonValue;
   posts?: Array<Post>;
   reputations?: Array<Reputation>;
+  avatars?: Array<Avatar>;
 };

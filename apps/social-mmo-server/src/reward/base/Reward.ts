@@ -11,6 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+
 import {
   IsString,
   IsDate,
@@ -20,9 +21,12 @@ import {
   Min,
   Max,
   ValidateNested,
+  IsEnum,
 } from "class-validator";
+
 import { Type } from "class-transformer";
 import { Quest } from "../../quest/base/Quest";
+import { EnumRewardTypeField } from "./EnumRewardTypeField";
 
 @ObjectType()
 class Reward {
@@ -83,6 +87,29 @@ class Reward {
   @Type(() => Quest)
   @IsOptional()
   quests?: Array<Quest>;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @MaxLength(1000)
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  name!: string | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumRewardTypeField,
+  })
+  @IsEnum(EnumRewardTypeField)
+  @IsOptional()
+  @Field(() => EnumRewardTypeField, {
+    nullable: true,
+  })
+  typeField?: "Option1" | null;
 }
 
 export { Reward as Reward };

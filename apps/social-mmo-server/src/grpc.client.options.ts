@@ -12,8 +12,8 @@ export const grpcClientOptions: ClientOptions = {
       "post",
       "event",
       "reward",
-      "quest",
       "reputation",
+      "quest",
       "user",
       "clothingitem",
       "avatar"
@@ -24,8 +24,8 @@ export const grpcClientOptions: ClientOptions = {
       "src/post/post.proto",
       "src/event/event.proto",
       "src/reward/reward.proto",
-      "src/quest/quest.proto",
       "src/reputation/reputation.proto",
+      "src/quest/quest.proto",
       "src/user/user.proto",
       "src/clothingitem/clothingitem.proto",
       "src/avatar/avatar.proto"

@@ -73,6 +73,10 @@ export class ReputationControllerBase {
             id: true,
           },
         },
+
+        points: true,
+        reputationPoints: true,
+        reputationUser: true,
       },
     });
   }
@@ -104,6 +108,10 @@ export class ReputationControllerBase {
             id: true,
           },
         },
+
+        points: true,
+        reputationPoints: true,
+        reputationUser: true,
       },
     });
   }
@@ -136,6 +144,10 @@ export class ReputationControllerBase {
             id: true,
           },
         },
+
+        points: true,
+        reputationPoints: true,
+        reputationUser: true,
       },
     });
     if (result === null) {
@@ -188,6 +200,10 @@ export class ReputationControllerBase {
               id: true,
             },
           },
+
+          points: true,
+          reputationPoints: true,
+          reputationUser: true,
         },
       });
     } catch (error) {
@@ -228,6 +244,10 @@ export class ReputationControllerBase {
               id: true,
             },
           },
+
+          points: true,
+          reputationPoints: true,
+          reputationUser: true,
         },
       });
     } catch (error) {

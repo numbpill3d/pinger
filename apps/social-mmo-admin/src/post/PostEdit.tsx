@@ -21,6 +21,10 @@ export const PostEdit = (props: EditProps): React.ReactElement => {
         <ReferenceInput source="user.id" reference="User" label="User">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>
+        <TextInput label="author" source="author" />
+        <TextInput label="postContent" multiline source="postContent" />
+        <TextInput label="postAuthor" source="postAuthor" />
+        <TextInput label="postThread" source="postThread" />
       </SimpleForm>
     </Edit>
   );

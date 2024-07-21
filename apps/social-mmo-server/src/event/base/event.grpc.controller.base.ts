@@ -41,6 +41,9 @@ export class EventGrpcControllerBase {
         title: true,
         description: true,
         date: true,
+        eventTitle: true,
+        eventDescription: true,
+        eventDate: true,
       },
     });
   }
@@ -60,6 +63,9 @@ export class EventGrpcControllerBase {
         title: true,
         description: true,
         date: true,
+        eventTitle: true,
+        eventDescription: true,
+        eventDate: true,
       },
     });
   }
@@ -80,6 +86,9 @@ export class EventGrpcControllerBase {
         title: true,
         description: true,
         date: true,
+        eventTitle: true,
+        eventDescription: true,
+        eventDate: true,
       },
     });
     if (result === null) {
@@ -109,6 +118,9 @@ export class EventGrpcControllerBase {
           title: true,
           description: true,
           date: true,
+          eventTitle: true,
+          eventDescription: true,
+          eventDate: true,
         },
       });
     } catch (error) {
@@ -138,6 +150,9 @@ export class EventGrpcControllerBase {
           title: true,
           description: true,
           date: true,
+          eventTitle: true,
+          eventDescription: true,
+          eventDate: true,
         },
       });
     } catch (error) {

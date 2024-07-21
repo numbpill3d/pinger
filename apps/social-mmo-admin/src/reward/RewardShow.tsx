@@ -22,6 +22,8 @@ export const RewardShow = (props: ShowProps): React.ReactElement => {
         <DateField source="updatedAt" label="Updated At" />
         <TextField label="description" source="description" />
         <TextField label="value" source="value" />
+        <TextField label="name" source="name" />
+        <TextField label="type" source="typeField" />
         <ReferenceManyField reference="Quest" target="rewardId" label="Quests">
           <Datagrid rowClick="show">
             <TextField label="ID" source="id" />
@@ -37,6 +39,9 @@ export const RewardShow = (props: ShowProps): React.ReactElement => {
             >
               <TextField source={REWARD_TITLE_FIELD} />
             </ReferenceField>
+            <TextField label="name" source="name" />
+            <TextField label="questName" source="questName" />
+            <TextField label="questDescription" source="questDescription" />
           </Datagrid>
         </ReferenceManyField>
       </SimpleShowLayout>

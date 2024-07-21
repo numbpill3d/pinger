@@ -35,11 +35,28 @@ export class ClothingItemGrpcControllerBase {
     @common.Body() data: ClothingItemCreateInput
   ): Promise<ClothingItem> {
     return await this.service.createClothingItem({
-      data: data,
+      data: {
+        ...data,
+
+        avatar: data.avatar
+          ? {
+              connect: data.avatar,
+            }
+          : undefined,
+      },
       select: {
         id: true,
         createdAt: true,
         updatedAt: true,
+        name: true,
+        typeField: true,
+        rarity: true,
+
+        avatar: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   }
@@ -56,6 +73,15 @@ export class ClothingItemGrpcControllerBase {
         id: true,
         createdAt: true,
         updatedAt: true,
+        name: true,
+        typeField: true,
+        rarity: true,
+
+        avatar: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   }
@@ -73,6 +99,15 @@ export class ClothingItemGrpcControllerBase {
         id: true,
         createdAt: true,
         updatedAt: true,
+        name: true,
+        typeField: true,
+        rarity: true,
+
+        avatar: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
     if (result === null) {
@@ -94,11 +129,28 @@ export class ClothingItemGrpcControllerBase {
     try {
       return await this.service.updateClothingItem({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          avatar: data.avatar
+            ? {
+                connect: data.avatar,
+              }
+            : undefined,
+        },
         select: {
           id: true,
           createdAt: true,
           updatedAt: true,
+          name: true,
+          typeField: true,
+          rarity: true,
+
+          avatar: {
+            select: {
+              id: true,
+            },
+          },
         },
       });
     } catch (error) {
@@ -125,6 +177,15 @@ export class ClothingItemGrpcControllerBase {
           id: true,
           createdAt: true,
           updatedAt: true,
+          name: true,
+          typeField: true,
+          rarity: true,
+
+          avatar: {
+            select: {
+              id: true,
+            },
+          },
         },
       });
     } catch (error) {

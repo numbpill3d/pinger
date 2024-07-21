@@ -20,6 +20,9 @@ string name = 4;
 string description = 5;
 repeated Thread threads = 6;
 string owner = 7;
+string title = 8;
+string forumTitle = 9;
+string forumDescription = 10;
 };
 message Forum {
 string id = 1;
@@ -29,6 +32,9 @@ string name = 4;
 string description = 5;
 repeated Thread threads = 6;
 string owner = 7;
+string title = 8;
+string forumTitle = 9;
+string forumDescription = 10;
 };
 message ForumWhereUniqueInput {
 string id = 1;
@@ -38,6 +44,9 @@ string name = 4;
 string description = 5;
 repeated Thread threads = 6;
 string owner = 7;
+string title = 8;
+string forumTitle = 9;
+string forumDescription = 10;
 };
 message ForumUpdateInput {
 string id = 1;
@@ -47,6 +56,9 @@ string name = 4;
 string description = 5;
 repeated Thread threads = 6;
 string owner = 7;
+string title = 8;
+string forumTitle = 9;
+string forumDescription = 10;
 };
 message findManyParams {
 

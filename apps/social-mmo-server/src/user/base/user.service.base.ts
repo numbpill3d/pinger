@@ -16,6 +16,7 @@ import {
   User as PrismaUser,
   Post as PrismaPost,
   Reputation as PrismaReputation,
+  Avatar as PrismaAvatar,
 } from "@prisma/client";
 
 import { PasswordService } from "../../auth/password.service";
@@ -88,5 +89,16 @@ export class UserServiceBase {
         where: { id: parentId },
       })
       .reputations(args);
+  }
+
+  async findAvatars(
+    parentId: string,
+    args: Prisma.AvatarFindManyArgs
+  ): Promise<PrismaAvatar[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .avatars(args);
   }
 }

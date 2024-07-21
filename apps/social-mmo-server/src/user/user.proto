@@ -14,7 +14,11 @@ rpc disconnectUser (PostParams) returns (Post) {}
 rpc findManyUser (UserWhereUniqueInput) returns (stream Reputation) {}
 rpc updateUser (ReputationParams) returns (stream Reputation) {}
 rpc connectUser (ReputationParams) returns (Reputation) {}
-rpc disconnectUser (ReputationParams) returns (Reputation) {} 
+rpc disconnectUser (ReputationParams) returns (Reputation) {}
+rpc findManyUser (UserWhereUniqueInput) returns (stream Avatar) {}
+rpc updateUser (AvatarParams) returns (stream Avatar) {}
+rpc connectUser (AvatarParams) returns (Avatar) {}
+rpc disconnectUser (AvatarParams) returns (Avatar) {} 
  }
 message UserCreateInput {
 string id = 1;
@@ -28,6 +32,7 @@ string password = 8;
 repeated string roles = 9;
 repeated Post posts = 10;
 repeated Reputation reputations = 11;
+repeated Avatar avatars = 12;
 };
 message User {
 string id = 1;
@@ -41,6 +46,7 @@ string password = 8;
 repeated string roles = 9;
 repeated Post posts = 10;
 repeated Reputation reputations = 11;
+repeated Avatar avatars = 12;
 };
 message UserWhereUniqueInput {
 string id = 1;
@@ -54,6 +60,7 @@ string password = 8;
 repeated string roles = 9;
 repeated Post posts = 10;
 repeated Reputation reputations = 11;
+repeated Avatar avatars = 12;
 };
 message UserUpdateInput {
 string id = 1;
@@ -67,6 +74,7 @@ string password = 8;
 repeated string roles = 9;
 repeated Post posts = 10;
 repeated Reputation reputations = 11;
+repeated Avatar avatars = 12;
 };
 message findManyParams {
 
@@ -76,12 +84,20 @@ string id = 1;
 string createdAt = 2;
 string updatedAt = 3;
 string content = 4;
+string author = 5;
+string postContent = 6;
+string postAuthor = 7;
+string postThread = 8;
 };
 message PostWhereUniqueInput {
 string id = 1;
 string createdAt = 2;
 string updatedAt = 3;
 string content = 4;
+string author = 5;
+string postContent = 6;
+string postAuthor = 7;
+string postThread = 8;
 };
 message PostParams {
 UserWhereUniqueInput userWhereUniqueInput = 1;
@@ -92,14 +108,38 @@ string id = 1;
 string createdAt = 2;
 string updatedAt = 3;
 int32 value = 4;
+int32 points = 5;
+int32 reputationPoints = 6;
+string reputationUser = 7;
 };
 message ReputationWhereUniqueInput {
 string id = 1;
 string createdAt = 2;
 string updatedAt = 3;
 int32 value = 4;
+int32 points = 5;
+int32 reputationPoints = 6;
+string reputationUser = 7;
 };
 message ReputationParams {
 UserWhereUniqueInput userWhereUniqueInput = 1;
 ReputationWhereUniqueInput reputationWhereUniqueInput = 2;
+};
+message Avatar {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+string avatarUrl = 5;
+};
+message AvatarWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+string avatarUrl = 5;
+};
+message AvatarParams {
+UserWhereUniqueInput userWhereUniqueInput = 1;
+AvatarWhereUniqueInput avatarWhereUniqueInput = 2;
 };

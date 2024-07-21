@@ -7,4 +7,6 @@ export type Reward = {
   description: string | null;
   value: number | null;
   quests?: Array<Quest>;
+  name: string | null;
+  typeField?: "Option1" | null;
 };

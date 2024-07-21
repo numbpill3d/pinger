@@ -1,1 +1,8 @@
-export type ClothingItemCreateInput = {};
+import { AvatarWhereUniqueInput } from "../avatar/AvatarWhereUniqueInput";
+
+export type ClothingItemCreateInput = {
+  name?: string | null;
+  typeField?: "Option1" | null;
+  rarity?: "Option1" | null;
+  avatar?: AvatarWhereUniqueInput | null;
+};

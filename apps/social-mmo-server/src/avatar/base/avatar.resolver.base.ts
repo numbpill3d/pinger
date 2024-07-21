@@ -18,11 +18,17 @@ import * as gqlACGuard from "../../auth/gqlAC.guard";
 import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
 import * as common from "@nestjs/common";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
+import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { Avatar } from "./Avatar";
 import { AvatarCountArgs } from "./AvatarCountArgs";
 import { AvatarFindManyArgs } from "./AvatarFindManyArgs";
 import { AvatarFindUniqueArgs } from "./AvatarFindUniqueArgs";
+import { CreateAvatarArgs } from "./CreateAvatarArgs";
+import { UpdateAvatarArgs } from "./UpdateAvatarArgs";
 import { DeleteAvatarArgs } from "./DeleteAvatarArgs";
+import { ClothingItemFindManyArgs } from "../../clothingItem/base/ClothingItemFindManyArgs";
+import { ClothingItem } from "../../clothingItem/base/ClothingItem";
+import { User } from "../../user/base/User";
 import { AvatarService } from "../avatar.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => Avatar)
@@ -75,6 +81,61 @@ export class AvatarResolverBase {
     return result;
   }
 
+  @common.UseInterceptors(AclValidateRequestInterceptor)
+  @graphql.Mutation(() => Avatar)
+  @nestAccessControl.UseRoles({
+    resource: "Avatar",
+    action: "create",
+    possession: "any",
+  })
+  async createAvatar(@graphql.Args() args: CreateAvatarArgs): Promise<Avatar> {
+    return await this.service.createAvatar({
+      ...args,
+      data: {
+        ...args.data,
+
+        user: args.data.user
+          ? {
+              connect: args.data.user,
+            }
+          : undefined,
+      },
+    });
+  }
+
+  @common.UseInterceptors(AclValidateRequestInterceptor)
+  @graphql.Mutation(() => Avatar)
+  @nestAccessControl.UseRoles({
+    resource: "Avatar",
+    action: "update",
+    possession: "any",
+  })
+  async updateAvatar(
+    @graphql.Args() args: UpdateAvatarArgs
+  ): Promise<Avatar | null> {
+    try {
+      return await this.service.updateAvatar({
+        ...args,
+        data: {
+          ...args.data,
+
+          user: args.data.user
+            ? {
+                connect: args.data.user,
+              }
+            : undefined,
+        },
+      });
+    } catch (error) {
+      if (isRecordNotFoundError(error)) {
+        throw new GraphQLError(
+          `No resource was found for ${JSON.stringify(args.where)}`
+        );
+      }
+      throw error;
+    }
+  }
+
   @graphql.Mutation(() => Avatar)
   @nestAccessControl.UseRoles({
     resource: "Avatar",
@@ -94,5 +155,44 @@ export class AvatarResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [ClothingItem], { name: "clothingItems" })
+  @nestAccessControl.UseRoles({
+    resource: "ClothingItem",
+    action: "read",
+    possession: "any",
+  })
+  async findClothingItems(
+    @graphql.Parent() parent: Avatar,
+    @graphql.Args() args: ClothingItemFindManyArgs
+  ): Promise<ClothingItem[]> {
+    const results = await this.service.findClothingItems(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => User, {
+    nullable: true,
+    name: "user",
+  })
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "read",
+    possession: "any",
+  })
+  async getUser(@graphql.Parent() parent: Avatar): Promise<User | null> {
+    const result = await this.service.getUser(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 }

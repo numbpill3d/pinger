@@ -43,6 +43,8 @@ export class RewardGrpcControllerBase {
         updatedAt: true,
         description: true,
         value: true,
+        name: true,
+        typeField: true,
       },
     });
   }
@@ -61,6 +63,8 @@ export class RewardGrpcControllerBase {
         updatedAt: true,
         description: true,
         value: true,
+        name: true,
+        typeField: true,
       },
     });
   }
@@ -80,6 +84,8 @@ export class RewardGrpcControllerBase {
         updatedAt: true,
         description: true,
         value: true,
+        name: true,
+        typeField: true,
       },
     });
     if (result === null) {
@@ -108,6 +114,8 @@ export class RewardGrpcControllerBase {
           updatedAt: true,
           description: true,
           value: true,
+          name: true,
+          typeField: true,
         },
       });
     } catch (error) {
@@ -136,6 +144,8 @@ export class RewardGrpcControllerBase {
           updatedAt: true,
           description: true,
           value: true,
+          name: true,
+          typeField: true,
         },
       });
     } catch (error) {
@@ -171,6 +181,10 @@ export class RewardGrpcControllerBase {
             id: true,
           },
         },
+
+        name: true,
+        questName: true,
+        questDescription: true,
       },
     });
     if (results === null) {

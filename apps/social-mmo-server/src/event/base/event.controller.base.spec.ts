@@ -24,6 +24,9 @@ const CREATE_INPUT = {
   title: "exampleTitle",
   description: "exampleDescription",
   date: new Date(),
+  eventTitle: "exampleEventTitle",
+  eventDescription: "exampleEventDescription",
+  eventDate: new Date(),
 };
 const CREATE_RESULT = {
   id: "exampleId",
@@ -32,6 +35,9 @@ const CREATE_RESULT = {
   title: "exampleTitle",
   description: "exampleDescription",
   date: new Date(),
+  eventTitle: "exampleEventTitle",
+  eventDescription: "exampleEventDescription",
+  eventDate: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
@@ -41,6 +47,9 @@ const FIND_MANY_RESULT = [
     title: "exampleTitle",
     description: "exampleDescription",
     date: new Date(),
+    eventTitle: "exampleEventTitle",
+    eventDescription: "exampleEventDescription",
+    eventDate: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
@@ -50,6 +59,9 @@ const FIND_ONE_RESULT = {
   title: "exampleTitle",
   description: "exampleDescription",
   date: new Date(),
+  eventTitle: "exampleEventTitle",
+  eventDescription: "exampleEventDescription",
+  eventDate: new Date(),
 };
 
 const service = {
@@ -137,6 +149,7 @@ describe("Event", () => {
         createdAt: CREATE_RESULT.createdAt.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
         date: CREATE_RESULT.date.toISOString(),
+        eventDate: CREATE_RESULT.eventDate.toISOString(),
       });
   });
 
@@ -150,6 +163,7 @@ describe("Event", () => {
           createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
           updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
           date: FIND_MANY_RESULT[0].date.toISOString(),
+          eventDate: FIND_MANY_RESULT[0].eventDate.toISOString(),
         },
       ]);
   });
@@ -174,6 +188,7 @@ describe("Event", () => {
         createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
         updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
         date: FIND_ONE_RESULT.date.toISOString(),
+        eventDate: FIND_ONE_RESULT.eventDate.toISOString(),
       });
   });
 
@@ -188,6 +203,7 @@ describe("Event", () => {
         createdAt: CREATE_RESULT.createdAt.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
         date: CREATE_RESULT.date.toISOString(),
+        eventDate: CREATE_RESULT.eventDate.toISOString(),
       })
       .then(function () {
         agent

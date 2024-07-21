@@ -24,6 +24,9 @@ const CREATE_INPUT = {
   name: "exampleName",
   description: "exampleDescription",
   owner: "exampleOwner",
+  title: "exampleTitle",
+  forumTitle: "exampleForumTitle",
+  forumDescription: "exampleForumDescription",
 };
 const CREATE_RESULT = {
   id: "exampleId",
@@ -32,6 +35,9 @@ const CREATE_RESULT = {
   name: "exampleName",
   description: "exampleDescription",
   owner: "exampleOwner",
+  title: "exampleTitle",
+  forumTitle: "exampleForumTitle",
+  forumDescription: "exampleForumDescription",
 };
 const FIND_MANY_RESULT = [
   {
@@ -41,6 +47,9 @@ const FIND_MANY_RESULT = [
     name: "exampleName",
     description: "exampleDescription",
     owner: "exampleOwner",
+    title: "exampleTitle",
+    forumTitle: "exampleForumTitle",
+    forumDescription: "exampleForumDescription",
   },
 ];
 const FIND_ONE_RESULT = {
@@ -50,6 +59,9 @@ const FIND_ONE_RESULT = {
   name: "exampleName",
   description: "exampleDescription",
   owner: "exampleOwner",
+  title: "exampleTitle",
+  forumTitle: "exampleForumTitle",
+  forumDescription: "exampleForumDescription",
 };
 
 const service = {

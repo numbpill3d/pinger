@@ -17,6 +17,7 @@ import { IsOptional, ValidateNested } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { PostListRelationFilter } from "../../post/base/PostListRelationFilter";
 import { ReputationListRelationFilter } from "../../reputation/base/ReputationListRelationFilter";
+import { AvatarListRelationFilter } from "../../avatar/base/AvatarListRelationFilter";
 
 @InputType()
 class UserWhereInput {
@@ -98,6 +99,18 @@ class UserWhereInput {
     nullable: true,
   })
   reputations?: ReputationListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => AvatarListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => AvatarListRelationFilter)
+  @IsOptional()
+  @Field(() => AvatarListRelationFilter, {
+    nullable: true,
+  })
+  avatars?: AvatarListRelationFilter;
 }
 
 export { UserWhereInput as UserWhereInput };

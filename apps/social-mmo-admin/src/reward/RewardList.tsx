@@ -17,6 +17,8 @@ export const RewardList = (props: ListProps): React.ReactElement => {
         <DateField source="updatedAt" label="Updated At" />
         <TextField label="description" source="description" />
         <TextField label="value" source="value" />
+        <TextField label="name" source="name" />
+        <TextField label="type" source="typeField" />
       </Datagrid>
     </List>
   );

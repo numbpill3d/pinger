@@ -8,4 +8,7 @@ export type QuestOrderByInput = {
   description?: SortOrder;
   reputationRequired?: SortOrder;
   rewardId?: SortOrder;
+  name?: SortOrder;
+  questName?: SortOrder;
+  questDescription?: SortOrder;
 };

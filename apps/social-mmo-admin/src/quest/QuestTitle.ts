@@ -1,7 +1,7 @@
 import { Quest as TQuest } from "../api/quest/Quest";
 
-export const QUEST_TITLE_FIELD = "title";
+export const QUEST_TITLE_FIELD = "name";
 
 export const QuestTitle = (record: TQuest): string => {
-  return record.title?.toString() || String(record.id);
+  return record.name?.toString() || String(record.id);
 };

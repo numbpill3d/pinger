@@ -12,6 +12,7 @@ import {
 
 import { PostTitle } from "../post/PostTitle";
 import { ReputationTitle } from "../reputation/ReputationTitle";
+import { AvatarTitle } from "../avatar/AvatarTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
 
 export const UserEdit = (props: EditProps): React.ReactElement => {
@@ -44,6 +45,14 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
           <SelectArrayInput optionText={ReputationTitle} />
+        </ReferenceArrayInput>
+        <ReferenceArrayInput
+          source="avatars"
+          reference="Avatar"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={AvatarTitle} />
         </ReferenceArrayInput>
       </SimpleForm>
     </Edit>

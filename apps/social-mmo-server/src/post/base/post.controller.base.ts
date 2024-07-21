@@ -82,6 +82,11 @@ export class PostControllerBase {
             id: true,
           },
         },
+
+        author: true,
+        postContent: true,
+        postAuthor: true,
+        postThread: true,
       },
     });
   }
@@ -119,6 +124,11 @@ export class PostControllerBase {
             id: true,
           },
         },
+
+        author: true,
+        postContent: true,
+        postAuthor: true,
+        postThread: true,
       },
     });
   }
@@ -157,6 +167,11 @@ export class PostControllerBase {
             id: true,
           },
         },
+
+        author: true,
+        postContent: true,
+        postAuthor: true,
+        postThread: true,
       },
     });
     if (result === null) {
@@ -221,6 +236,11 @@ export class PostControllerBase {
               id: true,
             },
           },
+
+          author: true,
+          postContent: true,
+          postAuthor: true,
+          postThread: true,
         },
       });
     } catch (error) {
@@ -267,6 +287,11 @@ export class PostControllerBase {
               id: true,
             },
           },
+
+          author: true,
+          postContent: true,
+          postAuthor: true,
+          postThread: true,
         },
       });
     } catch (error) {

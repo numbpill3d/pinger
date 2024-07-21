@@ -56,12 +56,20 @@ string id = 1;
 string createdAt = 2;
 string updatedAt = 3;
 string content = 4;
+string author = 5;
+string postContent = 6;
+string postAuthor = 7;
+string postThread = 8;
 };
 message PostWhereUniqueInput {
 string id = 1;
 string createdAt = 2;
 string updatedAt = 3;
 string content = 4;
+string author = 5;
+string postContent = 6;
+string postAuthor = 7;
+string postThread = 8;
 };
 message PostParams {
 ThreadWhereUniqueInput threadWhereUniqueInput = 1;

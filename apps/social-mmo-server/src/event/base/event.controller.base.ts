@@ -59,6 +59,9 @@ export class EventControllerBase {
         title: true,
         description: true,
         date: true,
+        eventTitle: true,
+        eventDescription: true,
+        eventDate: true,
       },
     });
   }
@@ -86,6 +89,9 @@ export class EventControllerBase {
         title: true,
         description: true,
         date: true,
+        eventTitle: true,
+        eventDescription: true,
+        eventDate: true,
       },
     });
   }
@@ -114,6 +120,9 @@ export class EventControllerBase {
         title: true,
         description: true,
         date: true,
+        eventTitle: true,
+        eventDescription: true,
+        eventDate: true,
       },
     });
     if (result === null) {
@@ -154,6 +163,9 @@ export class EventControllerBase {
           title: true,
           description: true,
           date: true,
+          eventTitle: true,
+          eventDescription: true,
+          eventDate: true,
         },
       });
     } catch (error) {
@@ -190,6 +202,9 @@ export class EventControllerBase {
           title: true,
           description: true,
           date: true,
+          eventTitle: true,
+          eventDescription: true,
+          eventDate: true,
         },
       });
     } catch (error) {
