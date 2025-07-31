@@ -102,7 +102,7 @@ describe("AuthService", () => {
 
   describe("Testing the authService.login()", () => {
     it("should return userInfo object for correct username and password", async () => {
-      const loginResult = await service.login(VALID_CREDENTIALS);
+      let loginResult = await service.login(VALID_CREDENTIALS);
       expect(loginResult).toEqual({
         username: USER.username,
         roles: USER.roles,
