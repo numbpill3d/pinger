@@ -69,7 +69,7 @@ export class UserResolverBase {
     possession: "own",
   })
   async user(@graphql.Args() args: UserFindUniqueArgs): Promise<User | null> {
-    const result = await this.service.user(args);
+    let result = await this.service.user(args);
     if (result === null) {
       return null;
     }
