@@ -105,7 +105,7 @@ export class UserControllerBase {
   async user(
     @common.Param() params: UserWhereUniqueInput
   ): Promise<User | null> {
-    const result = await this.service.user({
+    let result = await this.service.user({
       where: params,
       select: {
         id: true,
