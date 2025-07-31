@@ -17,33 +17,51 @@ export class AuthService {
     username: string,
     password: string
   ): Promise<UserInfo | null> {
-    const user = await this.userService.user({
-      where: { username },
-    });
-    if (user && (await this.passwordService.compare(password, user.password))) {
+    try {
+      const user = await this.userService.user({
+        where: { username },
+      });
+      
+      if (!user) {
+        return null;
+      }
+
+      const isPasswordValid = await this.passwordService.compare(password, user.password);
+      if (!isPasswordValid) {
+        return null;
+      }
+
       const { id, roles } = user;
       const roleList = roles as string[];
       return { id, username, roles: roleList };
+    } catch (error) {
+      return null;
     }
-    return null;
   }
   async login(credentials: Credentials): Promise<UserInfo> {
-    const { username, password } = credentials;
-    const user = await this.validateUser(
-      credentials.username,
-      credentials.password
-    );
-    if (!user) {
-      throw new UnauthorizedException("The passed credentials are incorrect");
+    try {
+      const { username, password } = credentials;
+      
+      const validatedUser = await this.validateUser(username, password);
+      if (!validatedUser) {
+        throw new UnauthorizedException("The passed credentials are incorrect");
+      }
+
+      const accessToken = await this.tokenService.createToken({
+        id: validatedUser.id,
+        username,
+        password,
+      });
+
+      return {
+        accessToken,
+        ...validatedUser,
+      };
+    } catch (error) {
+      if (error instanceof UnauthorizedException) {
+        throw error;
+      }
+      throw new UnauthorizedException("Authentication failed");
     }
-    const accessToken = await this.tokenService.createToken({
-      id: user.id,
-      username,
-      password,
-    });
-    return {
-      accessToken,
-      ...user,
-    };
   }
 }
