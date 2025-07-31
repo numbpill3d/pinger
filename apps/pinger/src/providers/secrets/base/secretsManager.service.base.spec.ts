@@ -17,7 +17,7 @@ describe("Testing the secrets manager base class", () => {
     //ARRANGE
     configService.get.mockReturnValue(SECRET_VALUE);
     //ACT
-    const result = await secretsManagerServiceBase.getSecret(
+    let result = await secretsManagerServiceBase.getSecret(
       SECRET_KEY as unknown as EnumSecretsNameKey
     );
     //ASSERT
@@ -27,7 +27,7 @@ describe("Testing the secrets manager base class", () => {
     //ARRANGE
     configService.get.mockReturnValue(undefined);
     //ACT
-    const result = await secretsManagerServiceBase.getSecret(
+    let result = await secretsManagerServiceBase.getSecret(
       SECRET_KEY as unknown as EnumSecretsNameKey
     );
     //ASSERT
